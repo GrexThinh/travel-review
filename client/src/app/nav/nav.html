@@ -1,0 +1,14 @@
+<nav class="bg-slate-900 text-white p-3 flex items-center justify-between shrink-0 overflow-x-auto">
+    <div class="flex items-center gap-2 font-bold text-lg mr-6">
+        <span class="material-symbols-outlined text-primary">travel_explore</span>
+        TravelReviews
+    </div>
+    <div class="flex gap-2">
+        <button *ngFor="let view of views" (click)="currentView.set(view.id)"
+            [class.bg-primary]="currentView() === view.id" [class.text-white]="currentView() === view.id"
+            [class.text-slate-400]="currentView() !== view.id"
+            class="px-3 py-1.5 rounded-md text-sm font-medium transition-colors hover:bg-slate-800 whitespace-nowrap">
+            {{ view.name }}
+        </button>
+    </div>
+</nav>

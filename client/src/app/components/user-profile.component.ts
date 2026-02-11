@@ -1,0 +1,256 @@
+import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-user-profile',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="min-h-screen bg-background-light font-display text-[#0d161b] antialiased">
+      <header
+        class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e7eef3] bg-white px-10 py-3"
+      >
+        <div class="flex items-center gap-8">
+          <div class="flex items-center gap-4 text-[#0d161b]">
+            <div class="size-8 text-primary">
+              <span class="material-symbols-outlined !text-[32px]">flight_takeoff</span>
+            </div>
+            <h2 class="text-[#0d161b] text-lg font-bold leading-tight tracking-[-0.015em]">
+              TravelReviews
+            </h2>
+          </div>
+        </div>
+        <div class="flex flex-1 justify-end gap-6 items-center">
+          <div
+            class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-white shadow-sm cursor-pointer"
+            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBgycZekZ0dLI0RWbn0RhvlBQU90hMvTRCZ1lp6NAy-ObtiTSGoo2d-7RIF13512XO2sDkS2RXfzjgdphvNS6Mf28EvyKoEFu3-1vT3k0c_b50QKSbjzNCMayO3YTS4kIcFszbSC0LTDJolN0vaIfuXidcAHmmbUJEUKVLQvR8N46AGzu91fI_jr4CBur8XL2ZS1FXHRur96SCn4FiZ3nzb_pZsF0mk8hZKYwL_CBrRj_Tnbgy5lTpchxkn78xYGJJ4911pLKINSGV5");'
+          ></div>
+        </div>
+      </header>
+
+      <main class="flex-1 flex justify-center py-8 px-4 sm:px-8">
+        <div class="flex flex-col max-w-[1024px] w-full gap-6">
+          <!-- Profile Header -->
+          <div class="bg-white rounded-xl shadow-sm border border-[#e7eef3] p-6">
+            <div
+              class="flex flex-col md:flex-row gap-6 items-start md:items-center justify-between"
+            >
+              <div class="flex gap-6 items-center flex-1">
+                <div class="relative">
+                  <div
+                    class="bg-center bg-no-repeat bg-cover rounded-full h-24 w-24 sm:h-32 sm:w-32 border-4 border-white shadow-md"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDIkQXqCC77Ozw1nbK3rhe2Wn9wpIUWRBFwK5C4z7hcUiFLB2Kl1WlaKAyIhNA0xwnMJFOa8fFBCmzBGX1WhruquiLVDW26ZsYSi3hroAQYlM4-oD8fUwOEbqlX3LfPSsrxWxQ-M75jdsQE2JKVWlhq9cWvZQ45Oyf1U0ZNLDURRFi4peJ0DANpFypjvullhCsC3lKm3fGAjSek0MMEi9wSdsnvGsvuADZIjGNBMOk6Jxv18WEYKNSFIaXGidAL_MPvvX3c-G3tjQtg");'
+                  ></div>
+                  <div
+                    class="absolute bottom-1 right-1 bg-green-500 rounded-full border-2 border-white size-5"
+                  ></div>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <h1
+                      class="text-[#0d161b] text-2xl sm:text-3xl font-bold leading-tight tracking-[-0.015em]"
+                    >
+                      Alex Wanderlust
+                    </h1>
+                    <span
+                      class="inline-flex items-center gap-1 rounded-full bg-blue-100 px-2 py-0.5 text-xs font-semibold text-primary border border-blue-200"
+                    >
+                      <span class="material-symbols-outlined text-[14px] !leading-none"
+                        >verified</span
+                      >
+                      Globe Trotter
+                    </span>
+                  </div>
+                  <p class="text-[#4c799a] text-base font-normal leading-normal max-w-lg">
+                    Exploring the world one bite at a time. Coffee addict ☕️ & Amateur photographer
+                    📸.
+                  </p>
+                  <div class="flex items-center gap-1 text-[#4c799a] text-sm mt-1">
+                    <span class="material-symbols-outlined text-[16px]">location_on</span>
+                    <span>San Francisco, CA</span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex gap-3 w-full md:w-auto">
+                <button
+                  class="flex-1 md:flex-none h-10 px-6 rounded-xl border border-[#cfdde7] text-[#0d161b] bg-white font-bold text-sm hover:bg-gray-50 transition-colors"
+                >
+                  Edit Profile
+                </button>
+                <button
+                  class="flex-1 md:flex-none size-10 flex items-center justify-center rounded-xl border border-[#cfdde7] text-[#0d161b] bg-white hover:bg-gray-50 transition-colors"
+                >
+                  <span class="material-symbols-outlined">settings</span>
+                </button>
+              </div>
+            </div>
+            <!-- Stats -->
+            <div class="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-[#e7eef3]">
+              <div
+                class="flex flex-col items-center justify-center text-center p-2 rounded-lg hover:bg-gray-50 cursor-pointer group"
+              >
+                <span
+                  class="text-[#0d161b] text-2xl font-bold leading-tight group-hover:text-primary transition-colors"
+                  >142</span
+                >
+                <span class="text-[#4c799a] text-xs sm:text-sm font-medium uppercase tracking-wide"
+                  >Reviews</span
+                >
+              </div>
+              <div
+                class="flex flex-col items-center justify-center text-center p-2 rounded-lg hover:bg-gray-50 cursor-pointer group border-x border-[#e7eef3]"
+              >
+                <span
+                  class="text-[#0d161b] text-2xl font-bold leading-tight group-hover:text-primary transition-colors"
+                  >3.5k</span
+                >
+                <span class="text-[#4c799a] text-xs sm:text-sm font-medium uppercase tracking-wide"
+                  >Followers</span
+                >
+              </div>
+              <div
+                class="flex flex-col items-center justify-center text-center p-2 rounded-lg hover:bg-gray-50 cursor-pointer group"
+              >
+                <span
+                  class="text-[#0d161b] text-2xl font-bold leading-tight group-hover:text-primary transition-colors"
+                  >890</span
+                >
+                <span class="text-[#4c799a] text-xs sm:text-sm font-medium uppercase tracking-wide"
+                  >Following</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Content Area -->
+          <div class="flex flex-col lg:flex-row gap-6">
+            <!-- Main Feed -->
+            <div class="flex-1 flex flex-col gap-6">
+              <!-- Tabs -->
+              <div class="bg-white rounded-xl shadow-sm border border-[#e7eef3] sticky top-20 z-40">
+                <div class="flex border-b border-[#cfdde7] px-6 gap-8 overflow-x-auto no-scrollbar">
+                  <a
+                    class="group flex flex-col items-center justify-center border-b-[3px] border-b-primary text-primary pb-[13px] pt-4 min-w-[max-content] cursor-pointer"
+                  >
+                    <div class="flex items-center gap-2">
+                      <span class="material-symbols-outlined text-[20px]">rate_review</span>
+                      <p class="text-sm font-bold leading-normal tracking-[0.015em]">My Reviews</p>
+                    </div>
+                  </a>
+                  <a
+                    class="group flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#4c799a] hover:text-primary pb-[13px] pt-4 min-w-[max-content] transition-colors cursor-pointer"
+                  >
+                    <div class="flex items-center gap-2">
+                      <span class="material-symbols-outlined text-[20px] group-hover:text-primary"
+                        >bookmark</span
+                      >
+                      <p class="text-sm font-bold leading-normal tracking-[0.015em]">
+                        Saved Places
+                      </p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Review Card 1 -->
+              <div
+                class="bg-white rounded-xl p-5 shadow-sm border border-[#e7eef3] hover:shadow-md transition-shadow"
+              >
+                <div class="flex justify-between items-start mb-3">
+                  <div class="flex items-center gap-3">
+                    <div class="bg-orange-100 text-orange-600 p-2 rounded-lg">
+                      <span class="material-symbols-outlined text-[20px]">restaurant</span>
+                    </div>
+                    <div>
+                      <h3 class="text-[#0d161b] font-bold text-lg leading-tight">Sushi Nakazawa</h3>
+                      <div class="flex items-center gap-1 text-xs text-[#4c799a]">
+                        <span class="material-symbols-outlined text-[14px]">location_on</span>
+                        <span>Tokyo, Japan</span>
+                        <span class="mx-1">•</span>
+                        <span>2 days ago</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex gap-0.5">
+                    <span class="material-symbols-outlined text-amber-400 text-[20px] fill-1"
+                      >star</span
+                    >
+                    <span class="material-symbols-outlined text-amber-400 text-[20px] fill-1"
+                      >star</span
+                    >
+                    <span class="material-symbols-outlined text-amber-400 text-[20px] fill-1"
+                      >star</span
+                    >
+                    <span class="material-symbols-outlined text-amber-400 text-[20px] fill-1"
+                      >star</span
+                    >
+                    <span class="material-symbols-outlined text-amber-400 text-[20px] fill-1"
+                      >star</span
+                    >
+                  </div>
+                </div>
+                <h4 class="font-bold text-[#0d161b] text-base mb-2">Hidden Gem in Tokyo</h4>
+                <p class="text-[#4c799a] text-sm leading-relaxed mb-4">
+                  Absolutely the best Omakase I've ever had! The chef was incredibly skilled and
+                  friendly. Each piece was a work of art. Highly recommend the fatty tuna and the
+                  sea urchin.
+                </p>
+                <div class="grid grid-cols-3 gap-2 mb-4 h-32">
+                  <div
+                    class="bg-gray-100 rounded-lg bg-center bg-cover col-span-2 h-full"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCwFdC-CQvnD8baiFjl2xPLgu4_Yl7KDjlv-QjKxpl85O7f-aQ8rzliQW4xVpU7FOxeePO79-QPpgEkzsXvY2k2Oo8K7hZh-OcHPYu4n298F0QrXu0dOu1nE8tkOy-JQW7TfIp172WNnqXnoppUWWbMJSAqSXlgsWDHjY-o9lFOHP9CHS27QRaDBtdAbkb0Ox_AHOM6ggKZB9mfSPD0XumM2HlsnAGZz95paVU1G1adGxGctlZ15mm1okYpmyDuYumvLDqYriWuO2Rd");'
+                  ></div>
+                  <div
+                    class="bg-gray-100 rounded-lg bg-center bg-cover h-full relative group cursor-pointer"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDwkWl2DpI8myt8VKgDtbAiE-rpVz9etV1NxFJQg7HRzrIB1x3c37-NwdHxdZPiXWR48H1TyhVBf2UwiTOMZhXJtUulNs-SPmwzAxK5sEEyhy9UdLIQBjDdJW7cgJ_VdhuaN_e5XYJgjyIkiWpHo18Ub0yy7LVeHA7xpLTi0bIQZdTSos2H7R6KtnWTThQbuwoPwdj0OHEAoYWHMgeCDSkKIfXPvdD9t3hGVRbA3WpXNfZRZmrwmaTx2Jxfxf9LAshjgEkB3qnQ0538");'
+                  >
+                    <div
+                      class="absolute inset-0 bg-black/40 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <span class="text-white text-xs font-bold">+2 more</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="w-full lg:w-[320px] flex flex-col gap-6">
+              <div class="bg-white rounded-xl p-5 shadow-sm border border-[#e7eef3]">
+                <div class="flex items-center justify-between mb-4">
+                  <h3 class="font-bold text-[#0d161b] text-base">Badges</h3>
+                </div>
+                <div class="flex flex-col gap-4">
+                  <div class="flex items-center gap-3">
+                    <div
+                      class="size-10 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600"
+                    >
+                      <span class="material-symbols-outlined">trophy</span>
+                    </div>
+                    <div class="flex-1">
+                      <h4 class="font-bold text-sm text-[#0d161b]">Review Master</h4>
+                      <p class="text-xs text-[#4c799a]">Written over 100 reviews</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <div
+                      class="size-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600"
+                    >
+                      <span class="material-symbols-outlined">flight</span>
+                    </div>
+                    <div class="flex-1">
+                      <h4 class="font-bold text-sm text-[#0d161b]">Jetsetter</h4>
+                      <p class="text-xs text-[#4c799a]">Visited 10+ countries</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class UserProfileComponent {}
