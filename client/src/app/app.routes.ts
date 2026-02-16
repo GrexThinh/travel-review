@@ -7,6 +7,10 @@ export const routes: Routes = [
     path: 'account',
     loadChildren: () => import('./features/account/routes').then((r) => r.accountRoutes),
   },
+  {
+    path: 'review',
+    loadChildren: () => import('./features/review/routes').then((r) => r.reviewRoutes),
+  },
   //   {
   //     path: '',
   //     runGuardsAndResolvers: 'always',

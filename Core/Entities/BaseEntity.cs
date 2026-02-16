@@ -4,9 +4,11 @@
     {
         public Guid Id { get; set; }
         public byte ActiveFlag { get; set; }
-        public DateTime Created { get; set; } = DateTime.UtcNow;
-        public DateTime Updated { get; set; } = DateTime.UtcNow;
-        public string CreatedBy { get; set; }
-        public string UpdatedBy { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+        public Guid CreatedById { get; set; }
+        public Guid UpdatedById { get; set; }
+        public AppUser CreatedBy { get; set; } = null!;
+        public AppUser UpdatedBy { get; set; } = null!;
     }
 }

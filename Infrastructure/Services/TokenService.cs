@@ -17,13 +17,12 @@ namespace Infrastructure.Services
             if (tokenKey.Length < 64) throw new Exception("Your tokenKey needs to be longer");
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenKey));
 
-            if (user.Email == null) throw new Exception("No email for user");
+            if (user.UserName == null) throw new Exception("No user name for user");
 
             var claims = new List<Claim>
             {
                 new(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new(ClaimTypes.Name, user.FullName),
-                new(ClaimTypes.Email, user.Email),
+                new(ClaimTypes.Name, user.UserName),
             };
 
             var roles = await userManager.GetRolesAsync(user);

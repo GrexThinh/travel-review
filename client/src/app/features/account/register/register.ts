@@ -1,6 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, signal } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, computed, inject, signal } from '@angular/core';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
+import { Router } from '@angular/router';
+import { AccountService } from '../../../core/services/account';
 
 @Component({
   selector: 'app-register',
@@ -9,6 +19,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './register.css',
 })
 export class Register {
+  private accountService = inject(AccountService);
+  private router = inject(Router);
   signupForm: FormGroup;
 
   // Signals for password validation visual feedback
@@ -18,13 +30,25 @@ export class Register {
   hasNumber = computed(() => /\d/.test(this.passwordValue()));
   hasSpecialChar = computed(() => /[!@#$%^&*(),.?":{}|<>]/.test(this.passwordValue()));
 
+  passwordMatchValidator: ValidatorFn = (
+    control: AbstractControl<any, any>,
+  ): ValidationErrors | null => {
+    const password = control.get('password')?.value;
+    const confirmPassword = control.get('confirmPassword')?.value;
+
+    return password === confirmPassword ? null : { passwordMismatch: true };
+  };
+
   constructor(private fb: FormBuilder) {
-    this.signupForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', Validators.required],
-    });
+    // Use the typed, non-deprecated FormBuilder API without incompatible generics
+    this.signupForm = this.fb.nonNullable.group(
+      {
+        username: ['', Validators.required],
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        confirmPassword: ['', Validators.required],
+      },
+      { validators: this.passwordMatchValidator },
+    );
   }
 
   onPasswordInput(event: Event) {
@@ -35,7 +59,14 @@ export class Register {
   onSubmit() {
     if (this.signupForm.valid) {
       console.log('Form Submitted', this.signupForm.value);
-      // Here you would typically handle the API call
+      this.accountService.register(this.signupForm.value).subscribe({
+        next: (response: any) => {
+          this.router.navigateByUrl('/');
+        },
+        error: (error: any) => {
+          console.log(error);
+        },
+      });
     } else {
       this.signupForm.markAllAsTouched();
     }

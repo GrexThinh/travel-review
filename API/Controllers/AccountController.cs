@@ -13,11 +13,11 @@ namespace API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
-            if (await UserExists(registerDto.Email)) return BadRequest("Email is taken");
+            if (await UserExists(registerDto.UserName)) return BadRequest("UserName is taken");
 
             var user = mapper.Map<AppUser>(registerDto);
 
-            user.Email = registerDto.Email.ToLower();
+            // user.UserName = registerDto.UserName.ToLower();
 
             var result = await userManager.CreateAsync(user, registerDto.Password);
 
@@ -26,8 +26,7 @@ namespace API.Controllers
             return new UserDto
             {
                 Id = user.Id,
-                Email = user.Email,
-                FullName = user.FullName,
+                UserName = user.UserName!,
                 Token = await tokenService.CreateToken(user),
             };
         }
@@ -37,9 +36,9 @@ namespace API.Controllers
         {
             var user = await userManager.Users
                 .Include(p => p.Photos)
-                .FirstOrDefaultAsync(x => x.NormalizedEmail == loginDto.Email.ToLower());
+                .FirstOrDefaultAsync(x => x.NormalizedUserName == loginDto.UserName.ToUpper());
 
-            if (user == null || user.Email == null) return Unauthorized("Invalid email");
+            if (user == null || user.UserName == null) return Unauthorized("Invalid UserName");
 
             var result = await userManager.CheckPasswordAsync(user, loginDto.Password);
 
@@ -48,16 +47,15 @@ namespace API.Controllers
             return new UserDto
             {
                 Id = user.Id,
-                Email = user.Email,
-                FullName = user.FullName,
+                UserName = user.UserName,
                 Token = await tokenService.CreateToken(user),
                 PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url
             };
         }
 
-        private async Task<bool> UserExists(string email)
+        private async Task<bool> UserExists(string userName)
         {
-            return await userManager.Users.AnyAsync(x => x.NormalizedEmail == email.ToLower());
+            return await userManager.Users.AnyAsync(x => x.NormalizedUserName == userName.ToUpper());
         }
     }
 }

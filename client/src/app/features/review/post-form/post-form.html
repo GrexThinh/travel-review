@@ -1,0 +1,397 @@
+<div class="min-h-screen bg-background-light font-display">
+  <!-- Header -->
+  <header
+    class="sticky top-0 z-50 flex items-center justify-between border-b border-slate-200 bg-white/80 backdrop-blur-md px-6 py-4 lg:px-10"
+  >
+    <div class="flex items-center gap-4">
+      <a
+        routerLink="/review"
+        class="flex items-center gap-2 text-slate-900 transition-opacity hover:opacity-80 cursor-pointer"
+      >
+        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
+          <span class="material-symbols-outlined text-xl">arrow_back</span>
+        </div>
+      </a>
+      <div>
+        <h1 class="text-lg font-bold leading-tight tracking-tight">{{ isEditMode() ? 'Edit Review' : 'Write a Review' }}</h1>
+        <p class="text-xs text-slate-500">{{ isEditMode() ? 'Update your experience' : 'Share your experience' }}</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-4">
+      @if (isEditMode()) {
+        <button
+          type="button"
+          (click)="deletePost()"
+          [disabled]="deleting()"
+          class="flex items-center justify-center gap-2 rounded-xl bg-red-100 text-red-700 px-6 py-2.5 text-sm font-bold hover:bg-red-200 disabled:opacity-50"
+        >
+          <span>{{ deleting() ? 'Deleting...' : 'Delete' }}</span>
+        </button>
+      }
+      <button
+        type="button"
+        (click)="saveDraft()"
+        [disabled]="saving()"
+        class="flex items-center justify-center gap-2 rounded-xl bg-secondary px-6 py-2.5 text-sm font-bold shadow-lg shadow-primary/20 transition-transform hover:scale-105 active:scale-95 disabled:opacity-50"
+      >
+        <span>{{ saving() ? 'Saving...' : 'Save Draft' }}</span>
+      </button>
+      <button
+        type="button"
+        (click)="publish()"
+        [disabled]="saving()"
+        class="flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-primary/20 transition-transform hover:scale-105 active:scale-95 disabled:opacity-50"
+      >
+        <span>{{ saving() ? 'Saving...' : 'Publish' }}</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="flex flex-1 justify-center py-8 px-4 sm:px-6 lg:px-8">
+    @if (loading()) {
+      <div class="w-full max-w-4xl flex items-center justify-center py-20">
+        <span class="text-slate-500">Loading review...</span>
+      </div>
+    } @else if (loadError()) {
+      <div class="w-full max-w-4xl flex flex-col items-center justify-center gap-4 py-20 text-center">
+        <p class="text-slate-700">{{ loadError() }}</p>
+        <div class="flex gap-3">
+          <a
+            routerLink="/review"
+            class="rounded-xl bg-primary px-6 py-2.5 text-sm font-bold text-white shadow-lg hover:opacity-90"
+          >
+            Back to reviews
+          </a>
+          <button
+            type="button"
+            (click)="retryLoad()"
+            class="rounded-xl bg-secondary px-6 py-2.5 text-sm font-bold shadow-lg hover:opacity-90"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    } @else {
+    <form [formGroup]="form" class="w-full max-w-4xl flex flex-col gap-8">
+      <!-- Hero Image Upload (with preview when selected) -->
+      <div
+        class="group relative flex min-h-[320px] w-full flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 overflow-hidden transition-colors hover:border-primary/50 hover:bg-primary/5"
+      >
+        @if (coverPhotoPreviewUrl) {
+          <img
+            [src]="coverPhotoPreviewUrl"
+            alt="Cover preview"
+            class="absolute inset-0 h-full w-full object-cover z-0"
+          />
+        } @else if (existingCoverUrl) {
+          <img
+            [src]="existingCoverUrl"
+            alt="Cover"
+            class="absolute inset-0 h-full w-full object-cover z-0"
+          />
+          <div
+            class="absolute inset-0 z-10 flex items-center justify-center gap-3 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity"
+          >
+            <input
+              aria-label="Change cover photo"
+              class="absolute inset-0 z-20 cursor-pointer opacity-0"
+              type="file"
+              accept="image/*"
+              (change)="onCoverPhotoChange($event)"
+            />
+            <button
+              type="button"
+              (click)="clearCoverPhoto(); existingCoverUrl = null"
+              class="relative z-30 flex items-center gap-2 rounded-xl bg-white/90 px-4 py-2.5 text-sm font-bold text-slate-700 shadow-lg hover:bg-white"
+            >
+              <span class="material-symbols-outlined">delete</span>
+              Remove photo
+            </button>
+          </div>
+        } @else if (!existingCoverUrl) {
+          <input
+            aria-label="Upload cover photo"
+            class="absolute inset-0 z-10 cursor-pointer opacity-0"
+            type="file"
+            accept="image/*"
+            (change)="onCoverPhotoChange($event)"
+          />
+          <div
+            class="flex h-16 w-16 items-center justify-center rounded-full bg-slate-200 text-slate-400 transition-colors group-hover:bg-primary/20 group-hover:text-primary"
+          >
+            <span class="material-symbols-outlined text-3xl">add_photo_alternate</span>
+          </div>
+          <div class="text-center">
+            <h3 class="text-lg font-bold text-slate-900">Add Cover Photo</h3>
+            <p class="mt-1 text-sm text-slate-500">
+              Drag & drop or click to upload high quality image
+            </p>
+          </div>
+        } @else {
+          <div
+            class="absolute inset-0 z-10 flex items-center justify-center gap-3 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity"
+          >
+            <label class="relative z-30 flex cursor-pointer items-center gap-2 rounded-xl bg-white/90 px-4 py-2.5 text-sm font-bold text-slate-700 shadow-lg hover:bg-white">
+              <input type="file" accept="image/*" class="hidden" (change)="onCoverPhotoChange($event)" />
+              <span class="material-symbols-outlined">add_photo_alternate</span>
+              Change photo
+            </label>
+          </div>
+        }
+      </div>
+
+      <!-- Title -->
+      <div class="flex flex-col gap-3">
+        <p-floatlabel variant="on">
+          <input
+            pSize="large"
+            pInputText
+            id="title"
+            formControlName="title"
+            class="w-full rounded-lg"
+            type="text"
+          />
+          <label for="on_label">Give your review a catchy title...</label>
+        </p-floatlabel>
+        @if (form.get('title')?.invalid && form.get('title')?.touched) {
+          <small class="text-red-500">Title is required (max 200 characters)</small>
+        }
+
+        <!-- Category Type: predefined + add custom -->
+        <div class="flex flex-col gap-4">
+          <p class="text-sm font-medium text-slate-700">
+            Category type (select one or more, or add your own)
+          </p>
+          <div class="flex flex-wrap gap-3">
+            @for (cat of predefinedCategories; track cat.id) {
+              <button
+                type="button"
+                (click)="toggleCategory(cat)"
+                class="flex items-center gap-3 rounded-xl border px-5 py-3 transition-all group-hover:border-primary/50"
+                [class.border-primary]="isCategorySelected(cat.id)"
+                [class.bg-primary/10]="isCategorySelected(cat.id)"
+                [class.text-primary]="isCategorySelected(cat.id)"
+                [class.border-slate-200]="!isCategorySelected(cat.id)"
+                [class.bg-white]="!isCategorySelected(cat.id)"
+                [class.text-slate-700]="!isCategorySelected(cat.id)"
+              >
+                <span
+                  class="material-symbols-outlined"
+                  [class.filled]="isCategorySelected(cat.id)"
+                  >{{ cat.icon }}</span
+                >
+                <span class="font-bold">{{ cat.name }}</span>
+              </button>
+            }
+          </div>
+          <!-- Add custom category -->
+          <div class="flex flex-wrap items-center gap-2">
+            <p-floatlabel variant="on" class="flex-1">
+              <input
+                pInputText
+                formControlName="customCategoryInput"
+                class="w-full rounded-lg"
+                (keydown.enter)="$event.preventDefault(); addCustomCategory()"
+              />
+              <label for="on_label">Custom category name</label>
+            </p-floatlabel>
+            <p-button
+              label="Add category"
+              icon="pi pi-plus"
+              severity="primary"
+              (onClick)="addCustomCategory()"
+            />
+          </div>
+          <!-- Selected categories as chips -->
+          <div formArrayName="selectedCategories" class="flex flex-wrap gap-2">
+            @for (ctrl of selectedCategories.controls; track $index; let i = $index) {
+              <div
+                [formGroupName]="i"
+                class="inline-flex items-center gap-1 rounded-full bg-primary/10 text-primary px-2 py-0.5 text-xs"
+              >
+                <span>{{ ctrl.get('name')?.value }}</span>
+                <button
+                  type="button"
+                  (click)="removeCategory(i)"
+                  [disabled]="selectedCategories.length <= 1"
+                  class="rounded-full p-0.5 hover:bg-primary/20 transition-colors disabled:opacity-50 disabled:pointer-events-none"
+                  aria-label="Remove category"
+                >
+                  <span class="material-symbols-outlined text-lg">close</span>
+                </button>
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- Location -->
+        <p-floatlabel variant="on" class="flex-1">
+          <input
+            pInputText
+            id="location"
+            formControlName="location"
+            class="w-full rounded-lg"
+            type="text"
+          />
+          <label for="on_label">Location</label>
+        </p-floatlabel>
+        @if (form.get('location')?.invalid && form.get('location')?.touched) {
+          <small class="text-red-500">Location is required</small>
+        }
+      </div>
+
+      <!-- Description -->
+      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <h3 class="text-lg font-bold text-slate-900 mb-4">Description</h3>
+        <p-editor formControlName="description" placeholder="Tell us about your experience. What was the highlight? How was the service?" [style]="{ height: '320px' }" />
+      </div>
+
+      @if (form.get('description')?.invalid && form.get('description')?.touched) {
+        <small class="text-red-500">Description is required</small>
+      }
+
+      <!-- Rating -->
+      <div
+        class="grid grid-cols-1 gap-8 rounded-2xl bg-white p-8 md:grid-cols-2 shadow-sm border border-slate-100"
+      >
+        <div class="flex flex-col items-center justify-center gap-4 text-center">
+          <h3 class="text-xl font-bold text-slate-900">Overall Rating</h3>
+          <div class="flex gap-2">
+            @for (star of [1, 2, 3, 4, 5]; track star) {
+              <button
+                type="button"
+                (click)="setOverallRating(star)"
+                class="transition-transform hover:scale-110"
+                [class.text-yellow-400]="form.get('ratingOverall')?.value >= star"
+                [class.text-slate-300]="form.get('ratingOverall')?.value < star"
+              >
+                <span
+                  class="material-symbols-outlined text-4xl"
+                  [style.font-variation-settings]="
+                    form.get('ratingOverall')?.value >= star ? '\'FILL\' 1' : '\'FILL\' 0'
+                  "
+                  >star</span
+                >
+              </button>
+            }
+          </div>
+          <p class="text-sm font-medium text-slate-500">
+            {{ form.get('ratingOverall')?.value ?? 0 }} out of 5 stars
+          </p>
+        </div>
+        <div
+          class="flex flex-col justify-center gap-6 border-t border-slate-100 pt-6 md:border-l md:border-t-0 md:pl-8 md:pt-0"
+          formArrayName="ratingDetails"
+        >
+          @for (ctrl of ratingDetails.controls; track $index; let i = $index) {
+            <div [formGroupName]="i" class="space-y-2">
+              <div class="flex justify-between text-sm font-medium text-slate-700">
+                <span>{{ ratingDetailLabels[i]?.name }}</span>
+                <span class="font-semibold text-primary">
+                  {{ getRatingLabel(ctrl.get('rating')?.value) }}
+                </span>
+              </div>              
+              <p-slider formControlName="rating" [min]="1" [max]="5" [step]="1" class="w-full" />
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Additional Information (key-value stored as JSON) -->
+      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-bold text-slate-900">Additional Information</h3>
+          <p-button
+            label="Add more characteristic"
+            icon="pi pi-plus"
+            severity="secondary"
+            (onClick)="addAdditionalField()"
+          />
+        </div>
+        <div formArrayName="additionalInformationFields" class="flex flex-col gap-3">
+          @for (fg of additionalInformationFields.controls; track $index; let idx = $index) {
+            <div [formGroupName]="idx" class="flex flex-wrap items-center gap-2">
+              <input
+                pInputText
+                formControlName="key"
+                placeholder="Field name"
+                class="flex-1 min-w-[120px]"
+              />
+              <input
+                pInputText
+                formControlName="value"
+                placeholder="Value"
+                class="flex-1 min-w-[120px]"
+              />
+              <p-button
+                icon="pi pi-trash"
+                severity="danger"
+                [rounded]="true"
+                [text]="true"
+                (onClick)="removeAdditionalField(idx)"
+                [disabled]="additionalInformationFields.length <= 1"
+              />
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- More photos (above recommended) -->
+      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <h3 class="text-lg font-bold text-slate-900 mb-2">More photos</h3>
+        <p class="text-sm text-slate-500 mb-4">Add more images to your review (optional).</p>
+        <div class="flex flex-col gap-4">
+          <label
+            class="flex min-h-[120px] w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 py-6 transition-colors hover:border-primary/50 hover:bg-primary/5"
+          >
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              class="hidden"
+              (change)="onExtraPhotosChange($event)"
+            />
+            <span class="material-symbols-outlined text-3xl text-slate-400"
+              >add_photo_alternate</span
+            >
+            <span class="text-sm font-medium text-slate-600">Click or drop to add photos</span>
+          </label>
+          @if (extraPhotos.length) {
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+              @for (photo of extraPhotos; track photo.previewUrl; let i = $index) {
+                <div
+                  class="relative aspect-square rounded-xl overflow-hidden border border-slate-200 bg-slate-100 group"
+                >
+                  <img
+                    [src]="photo.previewUrl"
+                    [alt]="'Photo ' + (i + 1)"
+                    class="h-full w-full object-cover"
+                  />
+                  <button
+                    type="button"
+                    (click)="removeExtraPhoto(i)"
+                    class="absolute top-2 right-2 rounded-full bg-black/60 w-8 h-8 text-white hover:bg-red-500 transition-colors"
+                    aria-label="Remove photo"
+                  >
+                    <span class="material-symbols-outlined text-lg">close</span>
+                  </button>
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Recommend toggle -->
+      <div
+        class="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
+      >
+        <p-toggleswitch formControlName="isRecommended" inputId="recommend" />
+        <label for="recommend" class="font-medium text-slate-700 cursor-pointer">
+          I recommend this place
+        </label>
+      </div>
+    </form>
+    }
+  </main>
+</div>

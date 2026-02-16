@@ -66,7 +66,7 @@ namespace Infrastructure.Data.Migrations
                     b.Property<string>("CountryCode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateOnly>("DateOfBirth")
+                    b.Property<DateOnly?>("DateOfBirth")
                         .HasColumnType("date");
 
                     b.Property<string>("Email")
@@ -142,20 +142,24 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Core.Entities.Photo", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("AppUserId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsCover")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsMain")
                         .HasColumnType("bit");
 
                     b.Property<string>("PublicId")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ReviewPostId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Url")
                         .IsRequired()
@@ -165,7 +169,281 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasIndex("AppUserId");
 
+                    b.HasIndex("ReviewPostId");
+
                     b.ToTable("Photos");
+                });
+
+            modelBuilder.Entity("Core.Entities.RatingDetail", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte>("ActiveFlag")
+                        .HasColumnType("tinyint");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Icon")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<byte>("Rating")
+                        .HasColumnType("tinyint");
+
+                    b.Property<Guid>("ReviewPostId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UpdatedById")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("ReviewPostId");
+
+                    b.HasIndex("UpdatedById");
+
+                    b.ToTable("RatingDetails");
+                });
+
+            modelBuilder.Entity("Core.Entities.ReviewCategory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte>("ActiveFlag")
+                        .HasColumnType("tinyint");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Icon")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UpdatedById")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("UpdatedById");
+
+                    b.ToTable("ReviewCategories");
+                });
+
+            modelBuilder.Entity("Core.Entities.ReviewCommentFeedback", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte>("ActiveFlag")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ParentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ReviewPostId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UpdatedById")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("ParentId");
+
+                    b.HasIndex("ReviewPostId");
+
+                    b.HasIndex("UpdatedById");
+
+                    b.ToTable("ReviewCommentFeedbacks");
+                });
+
+            modelBuilder.Entity("Core.Entities.ReviewPost", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte>("ActiveFlag")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("AdditionalInformation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsRecommended")
+                        .HasColumnType("bit");
+
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
+
+                    b.Property<byte>("RatingOverall")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UpdatedById")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("UpdatedById");
+
+                    b.ToTable("ReviewPosts");
+                });
+
+            modelBuilder.Entity("Core.Entities.ReviewRatingFeedback", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte>("ActiveFlag")
+                        .HasColumnType("tinyint");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte>("Rating")
+                        .HasColumnType("tinyint");
+
+                    b.Property<Guid>("ReviewPostId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UpdatedById")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("ReviewPostId");
+
+                    b.HasIndex("UpdatedById");
+
+                    b.ToTable("ReviewRatingFeedbacks");
+                });
+
+            modelBuilder.Entity("Core.Entities.ReviewReaction", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte>("ActiveFlag")
+                        .HasColumnType("tinyint");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte>("Reaction")
+                        .HasColumnType("tinyint");
+
+                    b.Property<Guid?>("ReviewCommentFeedbackId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ReviewPostId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UpdatedById")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("ReviewCommentFeedbackId");
+
+                    b.HasIndex("ReviewPostId");
+
+                    b.HasIndex("UpdatedById");
+
+                    b.ToTable("ReviewReactions");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -256,6 +534,21 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ReviewCategoryReviewPost", b =>
+                {
+                    b.Property<Guid>("CategoriesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ReviewPostsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("CategoriesId", "ReviewPostsId");
+
+                    b.HasIndex("ReviewPostsId");
+
+                    b.ToTable("ReviewCategoryReviewPost");
+                });
+
             modelBuilder.Entity("Core.Entities.AppUserRole", b =>
                 {
                     b.HasOne("Core.Entities.AppRole", "Role")
@@ -281,7 +574,173 @@ namespace Infrastructure.Data.Migrations
                         .WithMany("Photos")
                         .HasForeignKey("AppUserId");
 
+                    b.HasOne("Core.Entities.ReviewPost", "ReviewPost")
+                        .WithMany("Photos")
+                        .HasForeignKey("ReviewPostId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.Navigation("AppUser");
+
+                    b.Navigation("ReviewPost");
+                });
+
+            modelBuilder.Entity("Core.Entities.RatingDetail", b =>
+                {
+                    b.HasOne("Core.Entities.AppUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.ReviewPost", "ReviewPost")
+                        .WithMany("RatingDetails")
+                        .HasForeignKey("ReviewPostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.AppUser", "UpdatedBy")
+                        .WithMany()
+                        .HasForeignKey("UpdatedById")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("ReviewPost");
+
+                    b.Navigation("UpdatedBy");
+                });
+
+            modelBuilder.Entity("Core.Entities.ReviewCategory", b =>
+                {
+                    b.HasOne("Core.Entities.AppUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.AppUser", "UpdatedBy")
+                        .WithMany()
+                        .HasForeignKey("UpdatedById")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("UpdatedBy");
+                });
+
+            modelBuilder.Entity("Core.Entities.ReviewCommentFeedback", b =>
+                {
+                    b.HasOne("Core.Entities.AppUser", "CreatedBy")
+                        .WithMany("CommentFeedbacks")
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.ReviewCommentFeedback", "Parent")
+                        .WithMany("Replies")
+                        .HasForeignKey("ParentId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Core.Entities.ReviewPost", "ReviewPost")
+                        .WithMany("CommentFeedbacks")
+                        .HasForeignKey("ReviewPostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.AppUser", "UpdatedBy")
+                        .WithMany()
+                        .HasForeignKey("UpdatedById")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("Parent");
+
+                    b.Navigation("ReviewPost");
+
+                    b.Navigation("UpdatedBy");
+                });
+
+            modelBuilder.Entity("Core.Entities.ReviewPost", b =>
+                {
+                    b.HasOne("Core.Entities.AppUser", "CreatedBy")
+                        .WithMany("ReviewPosts")
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.AppUser", "UpdatedBy")
+                        .WithMany()
+                        .HasForeignKey("UpdatedById")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("UpdatedBy");
+                });
+
+            modelBuilder.Entity("Core.Entities.ReviewRatingFeedback", b =>
+                {
+                    b.HasOne("Core.Entities.AppUser", "CreatedBy")
+                        .WithMany("RatingFeedbacks")
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.ReviewPost", "ReviewPost")
+                        .WithMany("RatingFeedbacks")
+                        .HasForeignKey("ReviewPostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.AppUser", "UpdatedBy")
+                        .WithMany()
+                        .HasForeignKey("UpdatedById")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("ReviewPost");
+
+                    b.Navigation("UpdatedBy");
+                });
+
+            modelBuilder.Entity("Core.Entities.ReviewReaction", b =>
+                {
+                    b.HasOne("Core.Entities.AppUser", "CreatedBy")
+                        .WithMany("Reactions")
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.ReviewCommentFeedback", "ReviewCommentFeedback")
+                        .WithMany("Reactions")
+                        .HasForeignKey("ReviewCommentFeedbackId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("Core.Entities.ReviewPost", "ReviewPost")
+                        .WithMany("Reactions")
+                        .HasForeignKey("ReviewPostId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("Core.Entities.AppUser", "UpdatedBy")
+                        .WithMany()
+                        .HasForeignKey("UpdatedById")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("ReviewCommentFeedback");
+
+                    b.Navigation("ReviewPost");
+
+                    b.Navigation("UpdatedBy");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -320,6 +779,21 @@ namespace Infrastructure.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ReviewCategoryReviewPost", b =>
+                {
+                    b.HasOne("Core.Entities.ReviewCategory", null)
+                        .WithMany()
+                        .HasForeignKey("CategoriesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.ReviewPost", null)
+                        .WithMany()
+                        .HasForeignKey("ReviewPostsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Core.Entities.AppRole", b =>
                 {
                     b.Navigation("UserRoles");
@@ -327,9 +801,37 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Core.Entities.AppUser", b =>
                 {
+                    b.Navigation("CommentFeedbacks");
+
                     b.Navigation("Photos");
 
+                    b.Navigation("RatingFeedbacks");
+
+                    b.Navigation("Reactions");
+
+                    b.Navigation("ReviewPosts");
+
                     b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("Core.Entities.ReviewCommentFeedback", b =>
+                {
+                    b.Navigation("Reactions");
+
+                    b.Navigation("Replies");
+                });
+
+            modelBuilder.Entity("Core.Entities.ReviewPost", b =>
+                {
+                    b.Navigation("CommentFeedbacks");
+
+                    b.Navigation("Photos");
+
+                    b.Navigation("RatingDetails");
+
+                    b.Navigation("RatingFeedbacks");
+
+                    b.Navigation("Reactions");
                 });
 #pragma warning restore 612, 618
         }

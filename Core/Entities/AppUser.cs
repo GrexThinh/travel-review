@@ -1,14 +1,18 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 
 namespace Core.Entities
 {
     public class AppUser : IdentityUser<Guid>
     {
         public string? FullName { get; set; }
-        public DateOnly DateOfBirth { get; set; }
+        public DateOnly? DateOfBirth { get; set; }
         public string? CountryCode { get; set; }
         public List<Photo> Photos { get; set; } = [];
         public ICollection<AppUserRole> UserRoles { get; set; } = [];
+        public List<ReviewPost> ReviewPosts { get; set; } = [];
+        public List<ReviewCommentFeedback> CommentFeedbacks { get; set; } = [];
+        public List<ReviewRatingFeedback> RatingFeedbacks { get; set; } = [];
+        public List<ReviewReaction> Reactions { get; set; } = [];
     }
 }
 

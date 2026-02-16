@@ -1,4 +1,5 @@
-﻿using Core.Interfaces;
+using API.Services;
+using Core.Interfaces;
 using Infrastructure.Data;
 using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
@@ -10,10 +11,13 @@ namespace API.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration config)
         {
+            services.Configure<S3StorageOptions>(config.GetSection(S3StorageOptions.SectionName));
+            services.AddScoped<IPhotoStorage, S3PhotoStorage>();
             services.AddControllers()
                 .AddJsonOptions(options =>
                 {
                     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                    options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
                 }
             );
             services.AddDbContext<DataContext>(opt =>
@@ -22,6 +26,10 @@ namespace API.Extensions
             });
             services.AddCors();
             services.AddScoped<ITokenService, TokenService>();
+            services.AddAutoMapper(cfg =>
+            {
+                cfg.AddMaps(AppDomain.CurrentDomain.GetAssemblies());
+            });
 
             return services;
         }

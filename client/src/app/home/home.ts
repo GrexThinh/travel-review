@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { ExploreFeedComponent } from '../components/explore-feed.component';
+import { ReviewPost } from '../features/review/review-post/review-post';
 
 @Component({
   selector: 'app-home',
-  imports: [ExploreFeedComponent],
+  imports: [ReviewPost],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

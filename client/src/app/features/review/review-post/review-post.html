@@ -1,0 +1,118 @@
+<div class="min-h-screen bg-[#f8f9fa] text-slate-900 font-display">
+  <div class="flex flex-1 max-w-360 w-full mx-auto">
+    <aside
+      class="w-64 shrink-0 hidden lg:block sticky top-16 h-[calc(100vh-64px)] border-r border-slate-200 bg-white p-6"
+    >
+      <nav class="space-y-8">
+        <div>
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 px-3">Menu</h3>
+          <ul class="space-y-1">
+            <li>
+              <a
+                class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-primary/10 text-primary font-medium"
+                ><span class="material-symbols-outlined fill-1">home</span><span>Feed</span></a
+              >
+            </li>
+            <li>
+              <a
+                class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-100 font-medium"
+                ><span class="material-symbols-outlined">trending_up</span><span>Trending</span></a
+              >
+            </li>
+            <li>
+              <a
+                class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-100 font-medium"
+                ><span class="material-symbols-outlined">trending_up</span
+                ><span>My Reviews</span></a
+              >
+            </li>
+            <li>
+              <a
+                class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-100 font-medium"
+                ><span class="material-symbols-outlined">trending_up</span><span>Saved</span></a
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 px-3">
+            Popular Tags
+          </h3>
+          <div class="flex flex-wrap gap-2 px-1">
+            <span class="px-3 py-1.5 bg-slate-100 text-slate-600 rounded-lg text-xs font-medium"
+              >#SushiLovers</span
+            >
+            <span class="px-3 py-1.5 bg-slate-100 text-slate-600 rounded-lg text-xs font-medium"
+              >#BaliResorts</span
+            >
+          </div>
+        </div>
+        <button
+          routerLink="/review/create"
+          class="bg-primary text-white p-3 rounded-xl w-full flex items-center gap-2 justify-center"
+        >
+          <span class="material-symbols-outlined fill-1 text-sm">add</span
+          ><span>Post a Review</span>
+        </button>
+      </nav>
+    </aside>
+    <main class="flex-1 min-w-0 p-4 md:p-8">
+      <h1 class="text-2xl font-bold mb-4">Explore Feed</h1>
+      <div class="flex gap-3 mb-3">
+        <button
+          *ngFor="let view of views"
+          (click)="currentView.set(view.id)"
+          [ngClass]="{
+            'bg-black text-white': currentView() === view.id,
+          }"
+          class="flex items-center gap-1 px-3 py-1.5 rounded-2xl border text-sm font-medium transition-colors hover:bg-black hover:text-white whitespace-nowrap"
+        >
+          <span class="material-symbols-outlined fill-1 text-sm">home</span>
+          <span>{{ view.name }}</span>
+        </button>
+      </div>
+      <div class="columns-1 sm:columns-2 xl:columns-3 gap-6 space-y-6 pb-12">
+        @for (post of posts(); track post.id; let i = $index) {
+          <div
+            class="break-inside-avoid bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden"
+          >
+            <div class="relative">
+              <div
+                class="w-full bg-cover bg-center"
+                [ngClass]="getHeightByIndex(i)"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBinPdQro1V2_OcP9hPIZoH76W0EnlblRjNxKyc17teKYqHqmhMCzWGvggFHFkygAmXiPN_aBzLU9Rhk6X8Vvar_xc3nSfBBOR6yQ1eCQ4kktJsiqv0rvE8-U070efgXxq0OEEXGoZ_WcxT4LlXPL5JgsgFxpdjnsM_d5O4AgzMRsJkGnPCauyo-dit2hkNFL6RBeisDVC4ijGefQgo53GjlzjDLF-dEpebVPtkOQVg090SD3p5kW21vcKzX4fYhOZbWp9C4jZlSEsO');
+                "
+              ></div>
+              <span
+                class="absolute top-3 left-3 px-3 py-1 bg-white/90 rounded-lg text-xs font-bold text-primary shadow-sm"
+                >{{ post.categories[0].name }}</span
+              >
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-bold mb-2">{{ post.title }}</h3>
+              <p
+                class="text-sm text-slate-500 mb-4 prose prose-sm max-w-full break-all"
+                [innerHTML]="post.description"
+              ></p>
+              <div class="flex items-center justify-between border-t border-slate-100 pt-4">
+                <div class="flex items-center gap-2">
+                  <div
+                    class="w-8 h-8 rounded-full bg-slate-200 bg-cover"
+                    style="
+                      background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBXiv8qobNQFIxfrTlvmyZj9bmh0YZbIvulHCRD2k8mzoVTZlPDZ_Ysi8gK8kqSZqsWzIOo_TutK-zRFZT26MmMJGWa-8IniBB8i3L5YpFUt1vguZX7GaB-dHIOX-_2BUC0fgq5-EKJmc3yS1-NqsdX1gB4AoqW9Fdnjhj2fK4WnyaNYPkmx83bZ3oBuSVWKmzFFOzT6cPz6H2IjxEMSYoDPZmmL3JMVdmQjHPPRhKboorzbevttMy7TWEhzMm6QiSQv5uwiZv_Y_BA');
+                    "
+                  ></div>
+                  <div class="flex flex-col leading-4">
+                    <span class="text-xs font-bold">{{ post.createdBy.userName }}</span>
+                    <span class="text-xs font-bold">{{ post.createdAt | date: 'short' }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </main>
+  </div>
+</div>

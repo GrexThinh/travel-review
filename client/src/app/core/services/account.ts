@@ -7,7 +7,7 @@ import { map } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class Account {
+export class AccountService {
   baseUrl = environment.apiUrl;
   private http = inject(HttpClient);
   currentUser = signal<User | null>(null);
