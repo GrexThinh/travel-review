@@ -74,7 +74,8 @@
       <div class="columns-1 sm:columns-2 xl:columns-3 gap-6 space-y-6 pb-12">
         @for (post of posts(); track post.id; let i = $index) {
           <div
-            class="break-inside-avoid bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden"
+            routerLink="/review/detail/{{ post.id }}"
+            class="cursor-pointer break-inside-avoid bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden"
           >
             <div class="relative">
               <div
