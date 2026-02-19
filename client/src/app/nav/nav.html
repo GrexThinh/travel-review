@@ -1,64 +1,67 @@
-<!-- <nav class="bg-slate-900 text-white p-3 flex items-center justify-between shrink-0 overflow-x-auto">
-  <div class="flex items-center gap-2 font-bold text-lg mr-6">
-    <span class="material-symbols-outlined text-primary">travel_explore</span>
-    TravelReviews
-  </div>
-  <div class="flex gap-2">
-    @if (accountService.currentUser()) {
-      <button
-        *ngFor="let view of views"
-        (click)="currentView.set(view.id)"
-        [class.bg-primary]="currentView() === view.id"
-        [class.text-white]="currentView() === view.id"
-        [class.text-slate-400]="currentView() !== view.id"
-        class="px-3 py-1.5 rounded-md text-sm font-medium transition-colors hover:bg-slate-800 whitespace-nowrap"
-      >
-        {{ view.name }}
-      </button>
-    } @else {
-      <button
-        class="bg-primary text-white px-3 py-1.5 rounded-md text-sm font-medium transition-colors hover:bg-slate-800 whitespace-nowrap"
-        routerLink="/account/login"
-      >
-        Login
-      </button>
-    }
-  </div>
-</nav> -->
-<nav
-  class="sticky w-full top-0 z-50 bg-white border-b border-slate-200 h-16 px-6 flex items-center justify-between shadow-sm"
+<header
+  class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 bg-white px-6 py-3 lg:px-10"
 >
-  <div class="flex items-center gap-8 w-full max-w-7xl mx-auto">
-    <div class="flex items-center gap-3 shrink-0 cursor-pointer" routerLink="/">
-      <div class="size-8 rounded-lg bg-primary flex items-center justify-center text-white">
-        <span class="material-symbols-outlined">flight_takeoff</span>
+  <div class="flex items-center gap-8">
+    <div class="flex items-center gap-3 text-slate-900">
+      <div class="size-8 flex items-center justify-center text-primary">
+        <span class="material-symbols-outlined text-3xl">travel_explore</span>
       </div>
-      <h2 class="text-xl font-bold tracking-tight hidden md:block">Travel Reviews</h2>
+      <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">TravelReviews</h2>
     </div>
-    <div class="hidden md:flex flex-1 max-w-xl mx-auto">
-      <label class="relative w-full">
-        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400"
-          ><span class="material-symbols-outlined">search</span></span
+    <div class="hidden lg:flex items-center gap-9">
+      <a
+        class="text-slate-900 text-sm font-medium leading-normal hover:text-primary transition-colors cursor-pointer"
+        >Destinations</a
+      >
+      <a
+        class="text-slate-900 text-sm font-medium leading-normal hover:text-primary transition-colors cursor-pointer"
+        >Food</a
+      >
+      <a
+        class="text-slate-900 text-sm font-medium leading-normal hover:text-primary transition-colors cursor-pointer"
+        >Hotels</a
+      >
+      <a
+        class="text-slate-900 text-sm font-medium leading-normal hover:text-primary transition-colors cursor-pointer"
+        >Flights</a
+      >
+      <a
+        class="text-slate-900 text-sm font-medium leading-normal hover:text-primary transition-colors cursor-pointer"
+        >Community</a
+      >
+    </div>
+  </div>
+  <div class="flex flex-1 justify-end gap-4 lg:gap-8">
+    <label class="hidden sm:flex flex-col min-w-lg h-10 max-w-xl">
+      <div
+        class="flex w-full flex-1 items-stretch rounded-xl h-full focus-within:ring-2 focus-within:ring-primary/50"
+      >
+        <div
+          class="text-slate-500 flex border-none bg-slate-100 items-center justify-center pl-4 rounded-l-xl border-r-0"
         >
+          <span class="material-symbols-outlined text-xl">search</span>
+        </div>
         <input
-          class="block w-full rounded-xl border-none bg-slate-100 py-2.5 pl-10 pr-12 text-sm placeholder:text-slate-400 focus:ring-2 focus:ring-primary"
-          placeholder="Where to?"
+          class="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-slate-900 focus:outline-0 border-none bg-slate-100 focus:border-none h-full placeholder:text-slate-500 px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
+          placeholder="Search"
+          value=""
         />
-      </label>
-    </div>
+      </div>
+    </label>
     @if (accountService.currentUser()) {
-      <div class="flex items-center gap-4 shrink-0">
+      <div class="flex items-center gap-2 shrink-0">
         <button class="relative p-2 text-slate-500 hover:bg-slate-100 rounded-full">
           <span class="material-symbols-outlined">notifications</span
           ><span
             class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white"
           ></span>
         </button>
+        <p-menu #menu [model]="items" [popup]="true" appendTo="body" />
         <div
-          routerLink="/account/profile"
+          (click)="onAvatarClick($event, menu)"
           class="w-9 h-9 rounded-full bg-cover bg-center cursor-pointer"
-          style="
-            background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCCBTpVRD6FqSFWg_ZLzFGIph1-3ekobAp9MOf138jEEfpTZkMK1xeEnzvlJZqyoif-nvXpeKnUACTfkn7Tiruc3qNeavQIxxBFQDlaW-laRuUf_YaeU30kQCaPAPHfpwcMRTLk7R80wNJyozuk5-340qoInCSRK5KJ5h_ew25p6noXNXf8-wLvuLMHyQsBppK2XxkIy_s0KGtohpJO2Af1ruTTjcpMxNm3-G22WkZ8HBPPOA7byEchvPjKBUvNwFr5bULoA1iobTzn');
+          [style.background-image]="
+            'url(' + (accountService.currentUser()?.photoUrl || defaultAvatar) + ')'
           "
         ></div>
       </div>
@@ -71,4 +74,4 @@
       </button>
     }
   </div>
-</nav>
+</header>

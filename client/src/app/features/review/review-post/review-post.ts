@@ -19,6 +19,8 @@ export class ReviewPost {
   posts = signal<ReviewPostModel[]>([]);
 
   heightClasses = ['h-40', 'h-56', 'h-64', 'h-72', 'h-80'];
+  defaultImage =
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuBinPdQro1V2_OcP9hPIZoH76W0EnlblRjNxKyc17teKYqHqmhMCzWGvggFHFkygAmXiPN_aBzLU9Rhk6X8Vvar_xc3nSfBBOR6yQ1eCQ4kktJsiqv0rvE8-U070efgXxq0OEEXGoZ_WcxT4LlXPL5JgsgFxpdjnsM_d5O4AgzMRsJkGnPCauyo-dit2hkNFL6RBeisDVC4ijGefQgo53GjlzjDLF-dEpebVPtkOQVg090SD3p5kW21vcKzX4fYhOZbWp9C4jZlSEsO';
 
   getHeightByIndex(index: number): string {
     const pseudoRandom = (index * 7 + 3) % this.heightClasses.length;

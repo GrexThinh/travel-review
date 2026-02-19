@@ -80,10 +80,9 @@
               <div
                 class="w-full bg-cover bg-center"
                 [ngClass]="getHeightByIndex(i)"
-                style="
-                  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBinPdQro1V2_OcP9hPIZoH76W0EnlblRjNxKyc17teKYqHqmhMCzWGvggFHFkygAmXiPN_aBzLU9Rhk6X8Vvar_xc3nSfBBOR6yQ1eCQ4kktJsiqv0rvE8-U070efgXxq0OEEXGoZ_WcxT4LlXPL5JgsgFxpdjnsM_d5O4AgzMRsJkGnPCauyo-dit2hkNFL6RBeisDVC4ijGefQgo53GjlzjDLF-dEpebVPtkOQVg090SD3p5kW21vcKzX4fYhOZbWp9C4jZlSEsO');
-                "
+                [style.background-image]="'url(' + (post?.photos?.[0]?.url || defaultImage) + ')'"
               ></div>
+
               <span
                 class="absolute top-3 left-3 px-3 py-1 bg-white/90 rounded-lg text-xs font-bold text-primary shadow-sm"
                 >{{ post.categories[0].name }}</span
@@ -91,10 +90,10 @@
             </div>
             <div class="p-5">
               <h3 class="text-lg font-bold mb-2">{{ post.title }}</h3>
-              <p
+              <div
                 class="text-sm text-slate-500 mb-4 prose prose-sm max-w-full break-all"
                 [innerHTML]="post.description"
-              ></p>
+              ></div>
               <div class="flex items-center justify-between border-t border-slate-100 pt-4">
                 <div class="flex items-center gap-2">
                   <div
@@ -105,7 +104,7 @@
                   ></div>
                   <div class="flex flex-col leading-4">
                     <span class="text-xs font-bold">{{ post.createdBy.userName }}</span>
-                    <span class="text-xs font-bold">{{ post.createdAt | date: 'short' }}</span>
+                    <span class="text-xs text-slate-500">{{ post.createdAt | date: 'short' }}</span>
                   </div>
                 </div>
               </div>
