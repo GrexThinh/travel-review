@@ -56,7 +56,7 @@ public class ReviewController(
             .FirstOrDefaultAsync(p => p.Id == id && p.ActiveFlag == 1, cancellationToken);
 
         if (post == null) return NotFound();
-        return Ok(MapToDto(post));
+        return Ok(mapper.Map<ReviewPostDto>(post));
     }
 
     [Authorize]

@@ -1,0 +1,252 @@
+<header
+  class="sticky top-0 z-10 bg-white/80 backdrop-blur-md border-b border-slate-200 px-8 py-4 flex items-center justify-between"
+>
+  <div class="flex flex-col">
+    <div class="flex items-center gap-2 text-xs text-slate-500 mb-1">
+      <span>Library</span>
+      <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+      <span class="text-primary font-medium">Saved</span>
+    </div>
+    <h2 class="text-xl font-bold">Saved Items</h2>
+  </div>
+  <div class="flex items-center gap-4">
+    <div class="relative w-72">
+      <span class="material-symbols-outlined absolute left-3 top-1/4 text-slate-400">search</span>
+      <input
+        class="w-full pl-10 pr-4 py-2 bg-slate-100 border-none rounded-xl text-sm focus:ring-2 focus:ring-primary/50 transition-all"
+        placeholder="Search saved places..."
+        type="text"
+      />
+    </div>
+  </div>
+</header>
+
+<div class="p-8">
+  <!-- Tabs and Filters -->
+  <div class="flex items-center justify-between mb-8 border-b border-slate-200">
+    <div class="flex gap-8">
+      <button class="pb-4 text-sm font-bold text-primary border-b-2 border-primary">
+        Saved Places (12)
+      </button>
+      <button
+        class="pb-4 text-sm font-bold text-slate-500 hover:text-slate-700 border-b-2 border-transparent"
+      >
+        Saved Reviews (8)
+      </button>
+    </div>
+    <div class="flex items-center gap-2 pb-4">
+      <span class="text-xs text-slate-500">Sort by:</span>
+      <select
+        class="bg-transparent border-none text-sm font-semibold py-0 pl-0 pr-8 focus:ring-0 cursor-pointer"
+      >
+        <option>Recently Saved</option>
+        <option>Alphabetical</option>
+        <option>Highest Rated</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Grid Content -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Place Card 1 -->
+    <div
+      class="group bg-white rounded-xl overflow-hidden border border-slate-200 hover:shadow-xl transition-all duration-300"
+    >
+      <div class="relative h-48 overflow-hidden">
+        <img
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          alt="Beautiful turquoise beach resort in Maldives"
+          src="https://picsum.photos/seed/maldives/400/300"
+          referrerPolicy="no-referrer"
+        />
+        <button
+          class="absolute top-4 right-4 size-9 bg-white/90 backdrop-blur text-primary rounded-full flex items-center justify-center shadow-lg"
+        >
+          <span class="material-symbols-outlined filled-icon text-[20px]">bookmark</span>
+        </button>
+        <div class="absolute bottom-4 left-4">
+          <span
+            class="bg-white/90 backdrop-blur px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider"
+            >Hotel</span
+          >
+        </div>
+      </div>
+      <div class="p-5">
+        <div class="flex justify-between items-start mb-2">
+          <h3 class="font-bold text-lg group-hover:text-primary transition-colors">
+            Azure Bay Resort
+          </h3>
+          <div class="flex items-center gap-1">
+            <span class="material-symbols-outlined text-yellow-400 text-sm filled-icon">star</span>
+            <span class="text-xs font-bold">4.9</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-1 text-slate-500 text-sm mb-4">
+          <span class="material-symbols-outlined text-sm">location_on</span>
+          <span>Maldives</span>
+        </div>
+        <div class="flex items-center justify-between border-t border-slate-100 pt-4">
+          <div>
+            <p class="text-[10px] text-slate-400 uppercase font-bold">Price</p>
+            <p class="text-sm font-bold text-primary">
+              $450<span class="text-slate-400 font-normal">/night</span>
+            </p>
+          </div>
+          <button
+            class="bg-slate-100 hover:bg-primary hover:text-white px-4 py-2 rounded-lg text-xs font-bold transition-all"
+          >
+            Details
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Place Card 2 -->
+    <div
+      class="group bg-white rounded-xl overflow-hidden border border-slate-200 hover:shadow-xl transition-all duration-300"
+    >
+      <div class="relative h-48 overflow-hidden">
+        <img
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          alt="Historic Gion district street in Kyoto Japan"
+          src="https://picsum.photos/seed/gion/400/300"
+          referrerPolicy="no-referrer"
+        />
+        <button
+          class="absolute top-4 right-4 size-9 bg-white/90 backdrop-blur text-primary rounded-full flex items-center justify-center shadow-lg"
+        >
+          <span class="material-symbols-outlined filled-icon text-[20px]">bookmark</span>
+        </button>
+        <div class="absolute bottom-4 left-4">
+          <span
+            class="bg-white/90 backdrop-blur px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider"
+            >Attraction</span
+          >
+        </div>
+      </div>
+      <div class="p-5">
+        <div class="flex justify-between items-start mb-2">
+          <h3 class="font-bold text-lg group-hover:text-primary transition-colors">
+            Gion District
+          </h3>
+          <div class="flex items-center gap-1">
+            <span class="material-symbols-outlined text-yellow-400 text-sm filled-icon">star</span>
+            <span class="text-xs font-bold">4.8</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-1 text-slate-500 text-sm mb-4">
+          <span class="material-symbols-outlined text-sm">location_on</span>
+          <span>Kyoto, Japan</span>
+        </div>
+        <div class="flex items-center justify-between border-t border-slate-100 pt-4">
+          <div>
+            <p class="text-[10px] text-slate-400 uppercase font-bold">Saved</p>
+            <p class="text-sm font-bold text-slate-600">Oct 12, 2023</p>
+          </div>
+          <button
+            class="bg-slate-100 hover:bg-primary hover:text-white px-4 py-2 rounded-lg text-xs font-bold transition-all"
+          >
+            Details
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Place Card 3 -->
+    <div
+      class="group bg-white rounded-xl overflow-hidden border border-slate-200 hover:shadow-xl transition-all duration-300"
+    >
+      <div class="relative h-48 overflow-hidden">
+        <img
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          alt="Iconic white washed buildings in Santorini Greece"
+          src="https://picsum.photos/seed/santorini/400/300"
+          referrerPolicy="no-referrer"
+        />
+        <button
+          class="absolute top-4 right-4 size-9 bg-white/90 backdrop-blur text-primary rounded-full flex items-center justify-center shadow-lg"
+        >
+          <span class="material-symbols-outlined filled-icon text-[20px]">bookmark</span>
+        </button>
+        <div class="absolute bottom-4 left-4">
+          <span
+            class="bg-white/90 backdrop-blur px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider"
+            >Hotel</span
+          >
+        </div>
+      </div>
+      <div class="p-5">
+        <div class="flex justify-between items-start mb-2">
+          <h3 class="font-bold text-lg group-hover:text-primary transition-colors">
+            Oia Boutique Hotel
+          </h3>
+          <div class="flex items-center gap-1">
+            <span class="material-symbols-outlined text-yellow-400 text-sm filled-icon">star</span>
+            <span class="text-xs font-bold">5.0</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-1 text-slate-500 text-sm mb-4">
+          <span class="material-symbols-outlined text-sm">location_on</span>
+          <span>Santorini, Greece</span>
+        </div>
+        <div class="flex items-center justify-between border-t border-slate-100 pt-4">
+          <div>
+            <p class="text-[10px] text-slate-400 uppercase font-bold">Price</p>
+            <p class="text-sm font-bold text-primary">
+              $320<span class="text-slate-400 font-normal">/night</span>
+            </p>
+          </div>
+          <button
+            class="bg-slate-100 hover:bg-primary hover:text-white px-4 py-2 rounded-lg text-xs font-bold transition-all"
+          >
+            Details
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Place Card 4 (Map Preview) -->
+    <div
+      class="group bg-white rounded-xl overflow-hidden border border-slate-200 hover:shadow-xl transition-all duration-300"
+    >
+      <div class="relative h-48 overflow-hidden bg-slate-200 flex items-center justify-center">
+        <div
+          class="absolute inset-0 bg-slate-100 opacity-50"
+          style="
+            background-image: radial-gradient(#1392ec 0.5px, transparent 0.5px);
+            background-size: 10px 10px;
+          "
+        ></div>
+        <span class="material-symbols-outlined text-4xl text-primary animate-pulse"
+          >location_on</span
+        >
+        <div
+          class="absolute bottom-4 left-4 bg-white px-3 py-1 rounded-full text-[10px] font-bold flex items-center gap-1 shadow-sm"
+        >
+          <span class="material-symbols-outlined text-[14px]">map</span> View on Map
+        </div>
+      </div>
+      <div class="p-5">
+        <h3 class="font-bold text-lg mb-2">Exploration Map</h3>
+        <p class="text-sm text-slate-500 mb-6">
+          See all 12 saved locations on an interactive world map to plan your route.
+        </p>
+        <button
+          class="w-full bg-primary text-white py-2.5 rounded-lg text-sm font-bold hover:bg-primary/90 transition-colors"
+        >
+          Open Saved Map
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load More / Empty State Section -->
+  <div
+    class="mt-12 flex flex-col items-center justify-center py-12 border-t border-dashed border-slate-300"
+  >
+    <p class="text-slate-500 text-sm mb-4">You've reached the end of your saved list.</p>
+    <button class="flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all">
+      Discover more places <span class="material-symbols-outlined">arrow_forward</span>
+    </button>
+  </div>
+</div>

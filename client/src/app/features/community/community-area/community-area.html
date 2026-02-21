@@ -1,0 +1,99 @@
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+  <!-- Hero Section -->
+  <div class="mb-10">
+    <h2 class="text-4xl font-extrabold tracking-tight mb-2">Community Groups</h2>
+    <p class="text-slate-500 text-lg max-w-2xl">
+      Find your next travel tribe and connect with like-minded explorers from around the globe.
+    </p>
+  </div>
+
+  <!-- Search & Filters -->
+  <div class="flex flex-col gap-6 mb-10">
+    <div class="relative w-full max-w-3xl">
+      <span class="material-icons absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-2xl"
+        >search</span
+      >
+      <input
+        class="w-full bg-white border border-slate-200 rounded-xl pl-12 pr-4 py-4 text-lg focus:ring-2 focus:ring-[#1392ec] focus:border-transparent shadow-sm transition-all"
+        placeholder="Search for your next travel tribe..."
+        type="text"
+      />
+    </div>
+    <div class="flex items-center gap-3 overflow-x-auto pb-2 no-scrollbar">
+      @for (filter of filters; track filter.label) {
+        <button
+          [class]="
+            'flex items-center gap-2 px-5 py-2 rounded-full font-medium whitespace-nowrap transition-all ' +
+            (filter.active
+              ? 'bg-[#1392ec] text-white'
+              : 'bg-white border border-slate-200 hover:border-[#1392ec]')
+          "
+        >
+          <span class="material-icons text-lg">{{ filter.icon }}</span>
+          {{ filter.label }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Groups Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    @for (group of groups; track group.title) {
+      <div
+        routerLink="group-detail"
+        class="cursor-pointer group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 transition-all flex flex-col hover:-translate-y-1 duration-300"
+      >
+        <div class="relative h-48 overflow-hidden">
+          <img [alt]="group.title" class="w-full h-full object-cover" [src]="group.image" />
+          @if (group.active) {
+            <div
+              class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-[#1392ec] shadow-sm uppercase tracking-wider"
+            >
+              Active
+            </div>
+          }
+        </div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="text-xl font-bold">{{ group.title }}</h3>
+            <div class="flex items-center gap-1 text-slate-500 text-sm font-medium">
+              <span class="material-icons text-base">group</span>
+              {{ group.members }}
+            </div>
+          </div>
+          <p class="text-slate-600 text-sm line-clamp-2 mb-6">{{ group.desc }}</p>
+          <div class="mt-auto flex items-center justify-between gap-4">
+            <div class="flex -space-x-2">
+              @for (avatar of group.avatars; track avatar) {
+                <img
+                  alt="Member"
+                  class="size-8 rounded-full border-2 border-white"
+                  [src]="avatar"
+                />
+              }
+              <div
+                class="size-8 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-[10px] font-bold"
+              >
+                +{{ group.extra }}
+              </div>
+            </div>
+            <button
+              class="bg-[#1392ec] hover:bg-[#1392ec]/90 text-white px-6 py-2.5 rounded-lg font-bold text-sm transition-colors whitespace-nowrap"
+            >
+              Join Group
+            </button>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- More Content Indicator -->
+  <div class="mt-16 text-center">
+    <button
+      class="bg-[#1392ec]/10 text-[#1392ec] px-8 py-3 rounded-xl font-bold hover:bg-[#1392ec]/20 transition-all"
+    >
+      Show More Groups
+    </button>
+  </div>
+</main>

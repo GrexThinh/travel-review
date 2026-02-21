@@ -1,0 +1,75 @@
+<div class="min-h-screen bg-[#f8f9fa] text-slate-900 font-display">
+  <div class="flex flex-1 max-w-360 w-full mx-auto">
+    <aside
+      class="w-64 shrink-0 hidden lg:block sticky top-16 h-[calc(100vh-64px)] border-r border-slate-200 bg-white p-6"
+    >
+      <nav class="space-y-8">
+        <div>
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 px-3">Menu</h3>
+          <ul class="space-y-1">
+            <li>
+              <a
+                routerLink="feed"
+                routerLinkActive="bg-primary text-white"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="cursor-pointer flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 font-medium"
+                ><span class="material-symbols-outlined fill-1">home</span><span>Feed</span></a
+              >
+            </li>
+            <li>
+              <a
+                routerLink="trending"
+                routerLinkActive="bg-primary text-white"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="cursor-pointer flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 font-medium"
+                ><span class="material-symbols-outlined">trending_up</span><span>Trending</span></a
+              >
+            </li>
+            <li>
+              <a
+                routerLink="my-reviews"
+                routerLinkActive="bg-primary text-white"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="cursor-pointer flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 font-medium"
+                ><span class="material-symbols-outlined">trending_up</span
+                ><span>My Reviews</span></a
+              >
+            </li>
+            <li>
+              <a
+                routerLink="saved-items"
+                routerLinkActive="bg-primary text-white"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="cursor-pointer flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 font-medium"
+                ><span class="material-symbols-outlined">trending_up</span><span>Saved</span></a
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 px-3">
+            Popular Tags
+          </h3>
+          <div class="flex flex-wrap gap-2 px-1">
+            <span class="px-3 py-1.5 bg-slate-100 text-slate-600 rounded-lg text-xs font-medium"
+              >#SushiLovers</span
+            >
+            <span class="px-3 py-1.5 bg-slate-100 text-slate-600 rounded-lg text-xs font-medium"
+              >#BaliResorts</span
+            >
+          </div>
+        </div>
+        <button
+          routerLink="/review/create"
+          class="bg-primary text-white p-3 rounded-xl w-full flex items-center gap-2 justify-center"
+        >
+          <span class="material-symbols-outlined fill-1 text-sm">add</span
+          ><span>Post a Review</span>
+        </button>
+      </nav>
+    </aside>
+    <main class="flex-1 min-w-0 p-4 md:p-8">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

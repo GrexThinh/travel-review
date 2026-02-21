@@ -1,0 +1,267 @@
+<main class="max-w-7xl mx-auto px-4 py-8">
+  <!-- Hero Search & Filter Bar -->
+  <section class="mb-10">
+    <div
+      class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex flex-wrap gap-4 items-end"
+    >
+      <div class="flex-1 min-w-60">
+        <label
+          for="search-culinary"
+          class="block text-xs font-bold text-slate-500 uppercase mb-1 ml-1"
+          >Search Culinary</label
+        >
+        <div class="relative">
+          <span
+            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+            >search</span
+          >
+          <input
+            id="search-culinary"
+            class="w-full pl-10 pr-4 py-3 bg-slate-50 border-none rounded-lg focus:ring-2 focus:ring-primary text-sm"
+            placeholder="Restaurants, dishes, or cities..."
+            type="text"
+          />
+        </div>
+      </div>
+      <div class="w-full sm:w-auto min-w-40">
+        <label
+          for="cuisine-select"
+          class="block text-xs font-bold text-slate-500 uppercase mb-1 ml-1"
+          >Cuisine</label
+        >
+        <select
+          id="cuisine-select"
+          class="w-full py-3 bg-slate-50 border-none rounded-lg focus:ring-2 focus:ring-primary text-sm appearance-none"
+        >
+          <option>All Cuisines</option>
+          <option>Italian</option>
+          <option>Japanese</option>
+          <option>Mexican</option>
+          <option>Thai</option>
+        </select>
+      </div>
+      <div class="w-full sm:w-auto min-w-30">
+        <label for="price-select" class="block text-xs font-bold text-slate-500 uppercase mb-1 ml-1"
+          >Price Range</label
+        >
+        <select
+          id="price-select"
+          class="w-full py-3 bg-slate-50 border-none rounded-lg focus:ring-2 focus:ring-primary text-sm appearance-none"
+        >
+          <option>Any Price</option>
+          <option>$ Cheap Eats</option>
+          <option>$$ Mid-range</option>
+          <option>$$$ Upscale</option>
+        </select>
+      </div>
+      <div class="w-full sm:w-auto min-w-40">
+        <label
+          for="dietary-select"
+          class="block text-xs font-bold text-slate-500 uppercase mb-1 ml-1"
+          >Dietary</label
+        >
+        <select
+          id="dietary-select"
+          class="w-full py-3 bg-slate-50 border-none rounded-lg focus:ring-2 focus:ring-primary text-sm appearance-none"
+        >
+          <option>No Preference</option>
+          <option>Vegan</option>
+          <option>Vegetarian</option>
+          <option>Gluten-Free</option>
+        </select>
+      </div>
+      <button
+        class="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-lg transition-all h-12.5"
+      >
+        Find Food
+      </button>
+    </div>
+  </section>
+
+  <!-- Featured Experience -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-extrabold mb-6 flex items-center gap-2">
+      <span class="material-symbols-outlined text-primary">auto_awesome</span>
+      Must-Try Experiences
+    </h2>
+    <div class="relative group h-100 overflow-hidden rounded-xl bg-slate-200">
+      <img
+        alt="Featured Food"
+        class="w-full h-full object-cover"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8sw-ycz7yIflJHby7y-ydszkQV0FiaoPPPqNp-eY6in6p0JBEibLx9UBXHudgsYeBG8nZIKizyIZFpa5LSi1nglhkd0-8KjqTRAfc9z2vMgXH5q-AE57HqCs81Y6plIpKZzgpdTsTr-NI-0rWTXt-kM2DMVouNgQ-LtAYlyk5Z2O7gyssOcnqgo8KbveY-uUEOnP9mPujXbG1JOe2-QejRXo-NIgloWDj5mYcuKtYEAOk1dDOCkj-H1mWkS7l8XbuPfnifQMl7y9I"
+      />
+      <div
+        class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8"
+      >
+        <span
+          class="bg-primary text-white text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full w-fit mb-4"
+          >Seasonal Special</span
+        >
+        <h3 class="text-4xl font-extrabold text-white mb-2 max-w-2xl">
+          The Ultimate Bangkok Street Food Safari
+        </h3>
+        <p class="text-slate-200 text-lg mb-6 max-w-xl">
+          Join local experts on a midnight journey through the city's hidden Michelin-starred
+          stalls.
+        </p>
+        <div class="flex gap-4">
+          <button
+            class="bg-white text-slate-900 font-bold py-3 px-6 rounded-lg hover:bg-primary hover:text-white transition-all"
+          >
+            Book This Tour
+          </button>
+          <button
+            class="bg-white/20 backdrop-blur-md text-white font-bold py-3 px-6 rounded-lg hover:bg-white/30 transition-all border border-white/30"
+          >
+            Read Review
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <!-- Review Grid -->
+    <div class="lg:col-span-8 space-y-8">
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl font-extrabold">Top Restaurant Reviews</h2>
+        <div class="flex items-center gap-2 bg-slate-100 p-1 rounded-lg">
+          <button class="px-4 py-1.5 text-xs font-bold rounded-md bg-white shadow-sm">All</button>
+          <button class="px-4 py-1.5 text-xs font-bold text-slate-500 hover:text-slate-900">
+            Fine Dining
+          </button>
+          <button class="px-4 py-1.5 text-xs font-bold text-slate-500 hover:text-slate-900">
+            Street Food
+          </button>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        @for (restaurant of restaurants; track restaurant.name) {
+          <div
+            class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-slate-200 flex flex-col"
+          >
+            <div class="relative h-48 group">
+              <img
+                [src]="restaurant.image"
+                [alt]="restaurant.name"
+                class="w-full h-full object-cover"
+              />
+              <button
+                class="absolute top-3 right-3 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 transition-colors"
+              >
+                <span class="material-symbols-outlined text-xl">favorite</span>
+              </button>
+              <span
+                class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded"
+                >{{ restaurant.category }}</span
+              >
+            </div>
+            <div class="p-5 flex-1 flex flex-col">
+              <div class="flex items-center justify-between mb-1">
+                <h3 class="font-bold text-lg">{{ restaurant.name }}</h3>
+                <span class="text-primary font-bold text-sm">{{ restaurant.price }}</span>
+              </div>
+              <div class="flex items-center gap-1 mb-3 text-amber-500">
+                @for (star of [1, 2, 3, 4, 5]; track star) {
+                  <span class="material-symbols-outlined text-sm filled-icon">star</span>
+                }
+                <span class="text-slate-500 text-xs font-semibold ml-1"
+                  >({{ restaurant.reviews }} reviews)</span
+                >
+              </div>
+              <p class="text-slate-600 text-sm line-clamp-2 mb-4">"{{ restaurant.quote }}"</p>
+              <div class="mt-auto flex items-center justify-between pt-4 border-t border-slate-100">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-primary text-lg">{{
+                    restaurant.statusIcon
+                  }}</span>
+                  <span class="text-xs font-bold text-slate-500">{{ restaurant.statusText }}</span>
+                </div>
+                <a class="text-primary font-bold text-sm hover:underline" href="#"
+                  >Read Full Review</a
+                >
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="lg:col-span-4 space-y-8">
+      <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+        <div class="bg-slate-50 px-5 py-4 border-b border-slate-200">
+          <h3 class="font-bold flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">trending_up</span>
+            Trending Food Tours
+          </h3>
+        </div>
+        <div class="p-5 space-y-6">
+          @for (tour of tours; track tour.title) {
+            <div class="flex gap-4 group cursor-pointer">
+              <div class="w-20 h-20 rounded-lg overflow-hidden shrink-0">
+                <img
+                  [src]="tour.image"
+                  [alt]="tour.title"
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                />
+              </div>
+              <div>
+                <h4
+                  class="font-bold text-sm leading-tight group-hover:text-primary transition-colors"
+                >
+                  {{ tour.title }}
+                </h4>
+                <p class="text-xs text-slate-500 mt-1">Starting from {{ tour.price }}</p>
+                <div class="flex items-center gap-1 mt-1">
+                  <span class="material-symbols-outlined text-[12px] text-amber-500 filled-icon"
+                    >star</span
+                  >
+                  <span class="text-[10px] font-bold">{{ tour.rating }} ({{ tour.reviews }})</span>
+                </div>
+              </div>
+            </div>
+          }
+          <button
+            class="w-full py-2 bg-slate-50 text-xs font-bold rounded-lg border border-slate-200 hover:bg-slate-100 transition-colors"
+          >
+            View All Experiences
+          </button>
+        </div>
+      </div>
+
+      <!-- Map Teaser -->
+      <div class="relative rounded-xl overflow-hidden h-60 border border-slate-200 shadow-sm">
+        <div class="absolute inset-0 bg-slate-200">
+          <img
+            alt="Map Preview"
+            class="w-full h-full object-cover opacity-60"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDf9TV7Im8sky7JhZZhOIen-ReR-gq-gaTZo6V7bJnPUDEC5S6OahzG9CMGOD-nqhfPq7RS2s6gaVngnDunqc1DoH6ANaAW_rkssgSrgnziLrs8BU7Es7JBVu7BQhYKslwSsKjAWhbZJwrR-tNkqjlq0xHTf7Z62pIV9zGDzEcamI-Z3PfWD2XIaXqPanQqM1lU_TSpSLS_U-8XCU-eMKCTXAB4yZe9mM4q5hwBHQpahwAdUYHDq3zWJZSockWa1w5A7dVyqT7htYj7"
+          />
+        </div>
+        <div
+          class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-black/10"
+        >
+          <span class="material-symbols-outlined text-4xl text-primary mb-2">map</span>
+          <h4 class="text-white font-extrabold text-lg mb-2 shadow-sm">Explore by Location</h4>
+          <p class="text-white/90 text-sm mb-4 font-medium">
+            Find the best eats within walking distance of your hotel.
+          </p>
+          <button
+            class="bg-primary text-white font-bold py-2 px-6 rounded-full hover:scale-105 transition-transform shadow-lg"
+          >
+            Open Interactive Map
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Floating Action Button -->
+<button
+  class="fixed bottom-8 right-8 bg-primary text-white p-4 rounded-full shadow-2xl flex items-center gap-2 hover:scale-110 transition-all z-60"
+>
+  <span class="material-symbols-outlined">edit_note</span>
+  <span class="font-bold pr-2">Write Review</span>
+</button>

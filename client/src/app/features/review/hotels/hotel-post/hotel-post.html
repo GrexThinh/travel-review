@@ -1,0 +1,254 @@
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <!-- Search Results Header -->
+  <div class="mb-8">
+    <nav aria-label="Breadcrumb" class="flex text-sm text-slate-500 mb-2">
+      <ol class="flex items-center space-x-2 list-none p-0">
+        <li><a class="hover:text-primary no-underline text-slate-500" href="#">Home</a></li>
+        <li><span class="material-symbols-outlined text-xs">chevron_right</span></li>
+        <li><a class="hover:text-primary no-underline text-slate-500" href="#">Greece</a></li>
+        <li><span class="material-symbols-outlined text-xs">chevron_right</span></li>
+        <li class="text-slate-900 font-medium">Santorini Hotels</li>
+      </ol>
+    </nav>
+    <h1 class="text-3xl font-extrabold text-slate-900">Stay in Santorini</h1>
+    <p class="text-slate-500">124 accommodations found • Oct 12 - Oct 19 • 2 guests</p>
+  </div>
+
+  <div class="flex flex-col lg:flex-row gap-8">
+    <!-- Sidebar Filters -->
+    <aside class="w-full lg:w-72 flex-shrink-0 space-y-6">
+      <div class="relative h-32 rounded-xl overflow-hidden cursor-pointer group mb-4">
+        <img
+          alt="Map preview"
+          class="w-full h-full object-cover transition-transform group-hover:scale-110"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAflQEUcT_xfNp-jQu71QUIP2cGezMroIrfHrlXMAoLh33te_DA0lSbU36dlpAELe1oBCUpFq-SP7G6wv3mZ5hsY_lbd33mrMIC8ZBdL1NVNL1Pj-R4eoRVtgthZpm8n4aI6iHDCUasU18RuOinphoajNoutBkNxIgHlVMjrM6jlXQ0U2p1tXWeptlw_cab7FJkkIuNsDi4viDqopV2xaDqHOIq6Dn0dOg87Z2fDREwliMR_92EBjdaXvx_R-Ysuokqa0sOQewtLpXq"
+        />
+        <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+          <button
+            class="bg-white text-slate-900 px-4 py-2 rounded-lg font-bold flex items-center gap-2 shadow-lg"
+          >
+            <span class="material-symbols-outlined text-primary">map</span> Show on Map
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl p-6 border border-slate-200 space-y-8">
+        <div>
+          <h3 class="font-bold text-lg mb-4">Price per night</h3>
+          <div class="space-y-4">
+            <input
+              class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-primary"
+              type="range"
+            />
+            <div class="flex justify-between text-sm font-medium">
+              <span>$0</span>
+              <span>$1,000+</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-lg mb-4">Star Rating</h3>
+          <div class="space-y-2">
+            <label class="flex items-center gap-3 cursor-pointer group">
+              <input
+                class="rounded text-primary focus:ring-primary border-slate-300"
+                type="checkbox"
+              />
+              <span class="flex text-amber-400">
+                @for (star of [1, 2, 3, 4, 5]; track star) {
+                  <span class="material-symbols-outlined filled-icon text-sm">star</span>
+                }
+              </span>
+              <span class="text-sm text-slate-600 group-hover:text-primary">(42)</span>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer group">
+              <input
+                checked
+                class="rounded text-primary focus:ring-primary border-slate-300"
+                type="checkbox"
+              />
+              <span class="flex text-amber-400">
+                @for (star of [1, 2, 3, 4]; track star) {
+                  <span class="material-symbols-outlined filled-icon text-sm">star</span>
+                }
+                <span class="material-symbols-outlined text-sm">star</span>
+              </span>
+              <span class="text-sm text-slate-600 group-hover:text-primary">(58)</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-lg mb-4">Property Type</h3>
+          <div class="space-y-3">
+            <label class="flex items-center justify-between cursor-pointer">
+              <div class="flex items-center gap-3">
+                <input checked class="rounded text-primary border-slate-300" type="checkbox" />
+                <span class="text-sm">Hotels</span>
+              </div>
+              <span class="text-xs text-slate-400">84</span>
+            </label>
+            <label class="flex items-center justify-between cursor-pointer">
+              <div class="flex items-center gap-3">
+                <input class="rounded text-primary border-slate-300" type="checkbox" />
+                <span class="text-sm">Villas</span>
+              </div>
+              <span class="text-xs text-slate-400">21</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Listings Area -->
+    <div class="flex-1 space-y-6">
+      <div
+        class="bg-white rounded-xl p-2 border border-slate-200 flex flex-wrap items-center justify-between gap-4"
+      >
+        <div class="flex bg-slate-100 p-1 rounded-lg">
+          <button
+            class="px-4 py-2 text-sm font-semibold rounded-md bg-white shadow-sm text-primary"
+          >
+            Recommended
+          </button>
+          <button class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-primary">
+            Lowest Price
+          </button>
+          <button class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-primary">
+            Highest Rating
+          </button>
+        </div>
+        <div class="flex items-center gap-4 px-4">
+          <span class="text-sm font-medium text-slate-500">Show:</span>
+          <div class="flex items-center gap-2">
+            <button class="p-1 rounded bg-slate-100 text-primary">
+              <span class="material-symbols-outlined">view_list</span>
+            </button>
+            <button class="p-1 rounded hover:bg-slate-100">
+              <span class="material-symbols-outlined">grid_view</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      @for (hotel of hotels; track hotel.name) {
+        <div
+          class="bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-xl transition-shadow group flex flex-col md:flex-row"
+        >
+          <div class="relative w-full md:w-80 h-64 md:h-auto overflow-hidden">
+            <img
+              [src]="hotel.image"
+              [alt]="hotel.name"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            @if (hotel.tag) {
+              <div class="absolute top-4 left-4">
+                <span
+                  class="bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm uppercase tracking-wider"
+                  >{{ hotel.tag }}</span
+                >
+              </div>
+            }
+            <button
+              class="absolute top-4 right-4 bg-white/90 backdrop-blur p-2 rounded-full text-slate-400 hover:text-red-500 transition-colors"
+            >
+              <span class="material-symbols-outlined">favorite</span>
+            </button>
+          </div>
+          <div class="flex-1 p-6 flex flex-col">
+            <div class="flex justify-between items-start mb-2">
+              <div>
+                <h2 class="text-xl font-extrabold text-slate-900 mb-1">{{ hotel.name }}</h2>
+                <div class="flex items-center gap-1 text-amber-400">
+                  @for (star of [1, 2, 3, 4, 5]; track star) {
+                    <span class="material-symbols-outlined filled-icon text-base">star</span>
+                  }
+                  <span class="ml-2 text-sm text-slate-500 font-medium">{{ hotel.location }}</span>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="flex items-center gap-2">
+                  <div class="flex flex-col items-end">
+                    <span class="font-bold text-slate-900">{{ hotel.scoreText }}</span>
+                    <span class="text-xs text-slate-500">{{ hotel.reviews }} reviews</span>
+                  </div>
+                  <div
+                    class="bg-primary text-white h-10 w-10 rounded-lg flex items-center justify-center font-bold text-lg"
+                  >
+                    {{ hotel.score }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex gap-4 my-4">
+              @for (amenity of hotel.amenities; track amenity.icon) {
+                <div
+                  class="flex items-center gap-1 text-xs text-slate-600 font-medium bg-slate-100 px-2 py-1 rounded"
+                >
+                  <span class="material-symbols-outlined text-sm">{{ amenity.icon }}</span>
+                  {{ amenity.name }}
+                </div>
+              }
+            </div>
+            <div
+              class="mb-6 p-4 bg-primary/5 rounded-lg border-l-4 border-primary italic text-sm text-slate-600"
+            >
+              "{{ hotel.quote }}"
+              <span class="block mt-1 font-semibold not-italic text-primary"
+                >— {{ hotel.quoteAuthor }}</span
+              >
+            </div>
+            <div class="mt-auto flex items-center justify-between border-t border-slate-100 pt-4">
+              <div>
+                @if (hotel.oldPrice) {
+                  <span class="text-xs text-slate-500 line-through">{{ hotel.oldPrice }}</span>
+                }
+                <div class="flex items-baseline gap-1">
+                  <span class="text-2xl font-black text-slate-900">{{ hotel.price }}</span>
+                  <span class="text-sm font-medium text-slate-500">/ night</span>
+                </div>
+              </div>
+              <button
+                class="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-lg shadow-lg shadow-primary/30 transition-all"
+              >
+                View Deal
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+
+      <div class="pt-10 pb-20 flex flex-col items-center gap-4">
+        <button
+          class="bg-white border border-slate-300 text-slate-700 font-bold py-3 px-12 rounded-xl hover:bg-slate-50 transition-colors shadow-sm"
+        >
+          Load 24 More Results
+        </button>
+        <div class="flex items-center gap-2">
+          <button
+            class="h-10 w-10 flex items-center justify-center rounded-lg bg-primary text-white font-bold"
+          >
+            1
+          </button>
+          <button
+            class="h-10 w-10 flex items-center justify-center rounded-lg hover:bg-slate-200 font-semibold"
+          >
+            2
+          </button>
+          <button
+            class="h-10 w-10 flex items-center justify-center rounded-lg hover:bg-slate-200 font-semibold"
+          >
+            3
+          </button>
+          <span class="px-2">...</span>
+          <button
+            class="h-10 w-10 flex items-center justify-center rounded-lg hover:bg-slate-200 font-semibold"
+          >
+            12
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

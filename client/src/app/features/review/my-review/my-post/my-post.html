@@ -1,0 +1,293 @@
+<div class="p-8">
+  <div class="max-w-5xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+      <div>
+        <h2 class="text-3xl font-extrabold tracking-tight">My Reviews</h2>
+        <p class="text-slate-500 mt-1">Manage your shared travel experiences and drafts</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="flex rounded-lg bg-slate-100 p-1">
+          <button class="px-4 py-1.5 text-sm font-bold bg-white rounded-md shadow-sm">
+            Published
+          </button>
+          <button class="px-4 py-1.5 text-sm font-bold text-slate-500">Drafts (2)</button>
+        </div>
+        <button class="p-2 rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors">
+          <span class="material-symbols-outlined text-slate-600">tune</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="relative mb-8">
+      <span
+        class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+        >search</span
+      >
+      <input
+        class="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+        placeholder="Search your reviews by destination or keyword..."
+        type="text"
+      />
+    </div>
+
+    <!-- Reviews List -->
+    <div class="space-y-6">
+      <!-- Card 1 -->
+      <div
+        class="group bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300"
+      >
+        <div class="flex flex-col md:flex-row">
+          <div class="md:w-64 h-48 md:h-auto overflow-hidden relative">
+            <img
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              alt="Scenic view of Venice canals with gondolas"
+              src="https://picsum.photos/seed/venice/400/400"
+              referrerPolicy="no-referrer"
+            />
+            <div
+              class="absolute top-3 left-3 bg-white/90 backdrop-blur px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider text-primary"
+            >
+              Italy
+            </div>
+          </div>
+          <div class="flex-1 p-6">
+            <div class="flex justify-between items-start mb-2">
+              <div>
+                <div class="flex items-center gap-1 mb-1">
+                  <span class="material-symbols-outlined text-amber-400 filled-icon text-lg"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined text-amber-400 filled-icon text-lg"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined text-amber-400 filled-icon text-lg"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined text-amber-400 filled-icon text-lg"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined text-amber-400 filled-icon text-lg"
+                    >star</span
+                  >
+                  <span class="text-xs font-bold text-slate-400 ml-2">5.0 • Oct 12, 2023</span>
+                </div>
+                <h3
+                  class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors"
+                >
+                  Magical sunset at the Amalfi Coast
+                </h3>
+              </div>
+              <div class="flex items-center gap-2">
+                <button
+                  class="p-2 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
+                  title="Edit Review"
+                >
+                  <span class="material-symbols-outlined">edit</span>
+                </button>
+                <button
+                  class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all"
+                  title="Delete Review"
+                >
+                  <span class="material-symbols-outlined">delete</span>
+                </button>
+              </div>
+            </div>
+            <p class="text-slate-600 line-clamp-2 mb-4">
+              The views from our villa were absolutely breathtaking. We spent every evening watching
+              the sun dip below the Mediterranean horizon. If you're planning a trip, definitely
+              look for the smaller, boutique hotels in Positano rather than the large commercial
+              chains.
+            </p>
+            <div class="flex items-center gap-4 text-xs font-bold text-slate-400">
+              <div class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">thumb_up</span> 124 Likes
+              </div>
+              <div class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">chat_bubble</span> 18 Comments
+              </div>
+              <div class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">visibility</span> 1.2k Views
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div
+        class="group bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300"
+      >
+        <div class="flex flex-col md:flex-row">
+          <div class="md:w-64 h-48 md:h-auto overflow-hidden relative">
+            <img
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              alt="Traditional Japanese temple in Kyoto surrounded by autumn leaves"
+              src="https://picsum.photos/seed/kyoto2/400/400"
+              referrerPolicy="no-referrer"
+            />
+            <div
+              class="absolute top-3 left-3 bg-white/90 backdrop-blur px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider text-primary"
+            >
+              Japan
+            </div>
+          </div>
+          <div class="flex-1 p-6">
+            <div class="flex justify-between items-start mb-2">
+              <div>
+                <div class="flex items-center gap-1 mb-1">
+                  <span class="material-symbols-outlined text-amber-400 filled-icon text-lg"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined text-amber-400 filled-icon text-lg"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined text-amber-400 filled-icon text-lg"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined text-amber-400 filled-icon text-lg"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined text-slate-300 text-lg">star</span>
+                  <span class="text-xs font-bold text-slate-400 ml-2">4.0 • Sep 28, 2023</span>
+                </div>
+                <h3
+                  class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors"
+                >
+                  Kyoto's Hidden Temples and Quiet Alleys
+                </h3>
+              </div>
+              <div class="flex items-center gap-2">
+                <button
+                  class="p-2 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
+                  title="Edit Review"
+                >
+                  <span class="material-symbols-outlined">edit</span>
+                </button>
+                <button
+                  class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all"
+                  title="Delete Review"
+                >
+                  <span class="material-symbols-outlined">delete</span>
+                </button>
+              </div>
+            </div>
+            <p class="text-slate-600 line-clamp-2 mb-4">
+              Avoiding the main tourist spots like Kinkaku-ji and wandering through the Higashiyama
+              district at dawn was the highlight of our trip. The serenity is unmatched. Be sure to
+              try the matcha at any of the local traditional tea houses.
+            </p>
+            <div class="flex items-center gap-4 text-xs font-bold text-slate-400">
+              <div class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">thumb_up</span> 89 Likes
+              </div>
+              <div class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">chat_bubble</span> 5 Comments
+              </div>
+              <div class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">visibility</span> 842 Views
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div
+        class="group bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300"
+      >
+        <div class="flex flex-col md:flex-row">
+          <div class="md:w-64 h-48 md:h-auto overflow-hidden relative">
+            <img
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              alt="Crystal clear blue water beach in Maldives with overwater bungalows"
+              src="https://picsum.photos/seed/maldives2/400/400"
+              referrerPolicy="no-referrer"
+            />
+            <div
+              class="absolute top-3 left-3 bg-white/90 backdrop-blur px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider text-primary"
+            >
+              Maldives
+            </div>
+          </div>
+          <div class="flex-1 p-6">
+            <div class="flex justify-between items-start mb-2">
+              <div>
+                <div class="flex items-center gap-1 mb-1">
+                  <span class="material-symbols-outlined text-amber-400 filled-icon text-lg"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined text-amber-400 filled-icon text-lg"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined text-amber-400 filled-icon text-lg"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined text-amber-400 filled-icon text-lg"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined text-amber-400 filled-icon text-lg"
+                    >star</span
+                  >
+                  <span class="text-xs font-bold text-slate-400 ml-2">5.0 • Aug 05, 2023</span>
+                </div>
+                <h3
+                  class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors"
+                >
+                  Underwater Paradise at Ari Atoll
+                </h3>
+              </div>
+              <div class="flex items-center gap-2">
+                <button
+                  class="p-2 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
+                  title="Edit Review"
+                >
+                  <span class="material-symbols-outlined">edit</span>
+                </button>
+                <button
+                  class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all"
+                  title="Delete Review"
+                >
+                  <span class="material-symbols-outlined">delete</span>
+                </button>
+              </div>
+            </div>
+            <p class="text-slate-600 line-clamp-2 mb-4">
+              If you love snorkeling, this is the place. We saw manta rays and whale sharks within
+              minutes of getting into the water. The resort staff were incredibly attentive and the
+              food was some of the best seafood I've ever had. Truly a bucket-list destination.
+            </p>
+            <div class="flex items-center gap-4 text-xs font-bold text-slate-400">
+              <div class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">thumb_up</span> 342 Likes
+              </div>
+              <div class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">chat_bubble</span> 42 Comments
+              </div>
+              <div class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">visibility</span> 4.5k Views
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination/Footer -->
+    <div class="mt-12 flex items-center justify-between border-t border-slate-200 pt-8 mb-12">
+      <p class="text-sm text-slate-500">Showing 3 of 12 published reviews</p>
+      <div class="flex gap-2">
+        <button
+          class="px-4 py-2 text-sm font-bold text-slate-400 bg-white border border-slate-200 rounded-lg cursor-not-allowed"
+        >
+          Previous
+        </button>
+        <button
+          class="px-4 py-2 text-sm font-bold text-primary bg-primary/5 border border-primary/20 rounded-lg hover:bg-primary/10 transition-colors"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

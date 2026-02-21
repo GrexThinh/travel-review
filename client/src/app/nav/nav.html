@@ -6,27 +6,41 @@
       <div class="size-8 flex items-center justify-center text-primary">
         <span class="material-symbols-outlined text-3xl">travel_explore</span>
       </div>
-      <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">TravelReviews</h2>
+      <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">TravelScore</h2>
     </div>
-    <div class="hidden lg:flex items-center gap-9">
+    <div class="hidden lg:flex items-center gap-4">
       <a
-        class="text-slate-900 text-sm font-medium leading-normal hover:text-primary transition-colors cursor-pointer"
+        routerLink="review/destinations"
+        routerLinkActive="bg-primary text-white"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="text-slate-900 text-sm font-medium px-3 py-1.5 rounded-xl leading-normal transition-colors cursor-pointer"
         >Destinations</a
       >
       <a
-        class="text-slate-900 text-sm font-medium leading-normal hover:text-primary transition-colors cursor-pointer"
+        routerLink="review/foods"
+        routerLinkActive="bg-primary text-white"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="text-slate-900 text-sm font-medium px-3 py-1.5 rounded-xl leading-normal transition-colors cursor-pointer"
         >Food</a
       >
       <a
-        class="text-slate-900 text-sm font-medium leading-normal hover:text-primary transition-colors cursor-pointer"
+        routerLink="review/hotels"
+        routerLinkActive="bg-primary text-white"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="text-slate-900 text-sm font-medium px-3 py-1.5 rounded-xl leading-normal transition-colors cursor-pointer"
         >Hotels</a
       >
       <a
-        class="text-slate-900 text-sm font-medium leading-normal hover:text-primary transition-colors cursor-pointer"
+        routerLink="review/flights"
+        routerLinkActive="bg-primary text-white"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="text-slate-900 text-sm font-medium px-3 py-1.5 rounded-xl leading-normal transition-colors cursor-pointer"
         >Flights</a
       >
       <a
-        class="text-slate-900 text-sm font-medium leading-normal hover:text-primary transition-colors cursor-pointer"
+        routerLink="community"
+        routerLinkActive="bg-primary text-white"
+        class="text-slate-900 text-sm font-medium px-3 py-1.5 rounded-xl leading-normal transition-colors cursor-pointer"
         >Community</a
       >
     </div>

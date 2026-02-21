@@ -1,0 +1,290 @@
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <!-- Hero Section -->
+  <section class="relative rounded-xl overflow-hidden mb-8 h-100 flex items-end">
+    <img
+      alt="Solo Traveler Hero"
+      class="absolute inset-0 w-full h-full object-cover"
+      src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtnR_BMATq8bg59_Y-Fu4SsTdtsaMH7Q20Z1cOEwl6oY12YgYWzLqdRoJFZPy-3rJpaVDqbb4xrBAiHCysGBxKIjWpTaV2OJJwMcjykloxXXtXdYsk3H8BOAk2_F2MhGC0tWeAb9XS15KsRspC-6VWXwp4WGuONzEADYsMMYGXV_UrPWRq5Dq_gE2eYccEUKMW1s5Qpc7nbjjNS3nFGcIqkp-byAzAlJKPV3l3WKGOUMYATQYGCx2eLWpHWej90ony8W7bxtoJQbeg"
+    />
+    <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent"></div>
+    <div
+      class="relative z-10 p-8 md:p-12 w-full flex flex-col md:flex-row md:items-end justify-between gap-6"
+    >
+      <div class="max-w-2xl">
+        <div class="flex items-center gap-2 mb-3">
+          <span
+            class="bg-[#1392ec]/90 text-white text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider"
+            >Official Community</span
+          >
+          <span class="text-white/80 text-sm font-medium flex items-center gap-1">
+            <span class="material-icons text-sm">group</span> 12.4k Members
+          </span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
+          Solo Travelers Community
+        </h1>
+        <p class="text-lg text-white/90 font-medium max-w-xl">
+          Find your next adventure, not just a destination. Share tips, reviews, and find travel
+          buddies in our member-strong community.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <button
+          class="bg-[#1392ec] hover:bg-[#1392ec]/90 text-white px-8 py-3 rounded-lg font-bold flex items-center gap-2 transition-all shadow-lg shadow-[#1392ec]/20"
+        >
+          <span class="material-icons">check_circle</span> Joined
+        </button>
+        <button
+          class="bg-white/20 hover:bg-white/30 backdrop-blur-md text-white px-6 py-3 rounded-lg font-bold transition-all"
+        >
+          Invite Friends
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+    @for (stat of stats; track stat.label) {
+      <div class="bg-white p-4 rounded-lg border border-slate-200 flex items-center gap-4">
+        <div [class]="'p-3 rounded-lg ' + stat.bgColor">
+          <span [class]="'material-icons ' + stat.iconColor">{{ stat.icon }}</span>
+        </div>
+        <div>
+          <p class="text-2xl font-bold">{{ stat.value }}</p>
+          <p class="text-xs text-slate-500 uppercase tracking-wide font-semibold">
+            {{ stat.label }}
+          </p>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Main Content Grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <!-- Left & Center: Feed & Curated List -->
+    <div class="lg:col-span-8 space-y-8">
+      <!-- Solo-Friendly Destinations -->
+      <section>
+        <div class="flex items-center justify-between mb-4 px-2">
+          <h2 class="text-2xl font-bold tracking-tight">Solo-Friendly Destinations</h2>
+          <a
+            class="text-[#1392ec] font-bold text-sm flex items-center gap-1 hover:underline"
+            href="#"
+          >
+            View All <span class="material-icons text-sm">arrow_forward</span>
+          </a>
+        </div>
+        <div class="flex overflow-x-auto gap-4 pb-4 no-scrollbar">
+          @for (dest of destinations; track dest.name) {
+            <div
+              class="min-w-70 bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200"
+            >
+              <div class="relative h-40">
+                <img [alt]="dest.name" class="w-full h-full object-cover" [src]="dest.image" />
+                <div
+                  class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-slate-900 flex items-center gap-1"
+                >
+                  <span class="material-icons text-xs text-emerald-500">security</span>
+                  {{ dest.safety }} Safety
+                </div>
+              </div>
+              <div class="p-4">
+                <h3 class="font-bold text-lg mb-1">{{ dest.name }}</h3>
+                <p class="text-slate-500 text-sm mb-3">{{ dest.desc }}</p>
+                <div
+                  class="flex items-center justify-between text-xs font-bold uppercase tracking-wider"
+                >
+                  <span class="text-[#1392ec]">{{ dest.status }}</span>
+                  <span class="text-slate-400">{{ dest.price }}</span>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </section>
+
+      <!-- Group Feed -->
+      <section>
+        <div class="flex items-center justify-between mb-4 px-2">
+          <h2 class="text-2xl font-bold tracking-tight">Group Feed</h2>
+          <div class="flex gap-2">
+            <button class="text-xs font-bold px-3 py-1.5 bg-slate-200 rounded-full">Newest</button>
+            <button
+              class="text-xs font-bold px-3 py-1.5 bg-[#1392ec]/10 text-[#1392ec] rounded-full"
+            >
+              Trending
+            </button>
+          </div>
+        </div>
+        <div class="space-y-4">
+          @for (post of posts; track post.id) {
+            <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm">
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center gap-3">
+                  <img
+                    [alt]="post.user"
+                    class="w-10 h-10 rounded-full object-cover"
+                    [src]="post.avatar"
+                  />
+                  <div>
+                    <h4 class="font-bold text-sm">
+                      {{ post.user }}
+                      <span class="text-slate-400 font-normal ml-1">posted {{ post.time }}</span>
+                    </h4>
+                    <div class="flex items-center gap-2">
+                      <span
+                        class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wide"
+                        >{{ post.tag }}</span
+                      >
+                      <span class="text-xs text-slate-500 flex items-center gap-1"
+                        ><span class="material-icons text-xs">location_on</span>
+                        {{ post.location }}</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <button class="text-slate-400">
+                  <span class="material-icons">more_horiz</span>
+                </button>
+              </div>
+              <h3 class="text-lg font-bold mb-2">{{ post.title }}</h3>
+              <p class="text-slate-600 mb-4 line-clamp-3">{{ post.content }}</p>
+              @if (post.images) {
+                <div class="grid grid-cols-2 gap-2 mb-4">
+                  @for (img of post.images; track img) {
+                    <img alt="Post image" class="rounded-lg h-48 w-full object-cover" [src]="img" />
+                  }
+                </div>
+              }
+              <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+                <div class="flex gap-4">
+                  <button
+                    class="flex items-center gap-1.5 text-slate-500 hover:text-[#1392ec] transition-colors"
+                  >
+                    <span class="material-icons text-xl">favorite_border</span>
+                    <span class="text-sm font-bold">{{ post.likes }}</span>
+                  </button>
+                  <button
+                    class="flex items-center gap-1.5 text-slate-500 hover:text-[#1392ec] transition-colors"
+                  >
+                    <span class="material-icons text-xl">chat_bubble_outline</span>
+                    <span class="text-sm font-bold">{{ post.comments }}</span>
+                  </button>
+                </div>
+                <button class="text-slate-500 hover:text-[#1392ec] transition-colors">
+                  <span class="material-icons text-xl">share</span>
+                </button>
+              </div>
+            </div>
+          }
+        </div>
+      </section>
+    </div>
+
+    <!-- Right Sidebar -->
+    <aside class="lg:col-span-4 space-y-8">
+      <!-- Upcoming Meetups -->
+      <section class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="p-4 border-b border-slate-100 flex items-center justify-between">
+          <h3 class="font-bold">Upcoming Meetups</h3>
+          <span class="material-icons text-[#1392ec]">event</span>
+        </div>
+        <div class="divide-y divide-slate-100">
+          @for (meetup of meetups; track meetup.title) {
+            <div class="p-4 hover:bg-slate-50 transition-colors cursor-pointer">
+              <div class="flex gap-3">
+                <div
+                  class="bg-[#1392ec]/10 text-[#1392ec] rounded-lg p-2 h-12 w-12 flex flex-col items-center justify-center shrink-0"
+                >
+                  <span class="text-[10px] font-bold uppercase leading-none">{{
+                    meetup.month
+                  }}</span>
+                  <span class="text-lg font-extrabold leading-none">{{ meetup.day }}</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-sm leading-tight mb-1">{{ meetup.title }}</h4>
+                  <p class="text-xs text-slate-500 mb-2">
+                    {{ meetup.location }} • {{ meetup.time }}
+                  </p>
+                  <div class="flex -space-x-2">
+                    @for (avatar of meetup.avatars; track avatar) {
+                      <img
+                        alt="Attendee"
+                        class="h-6 w-6 rounded-full border-2 border-white object-cover"
+                        [src]="avatar"
+                      />
+                    }
+                    <div
+                      class="h-6 w-6 rounded-full bg-slate-200 border-2 border-white flex items-center justify-center text-[10px] font-bold"
+                    >
+                      +{{ meetup.extra }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+        <div class="p-4 bg-slate-50">
+          <button
+            class="w-full py-2 bg-[#1392ec] text-white text-sm font-bold rounded-lg hover:bg-[#1392ec]/90 transition-all"
+          >
+            Organize Meetup
+          </button>
+        </div>
+      </section>
+
+      <!-- Top Contributors -->
+      <section class="bg-white rounded-xl border border-slate-200 shadow-sm p-4">
+        <h3 class="font-bold mb-4 flex items-center gap-2">
+          <span class="material-icons text-amber-500">military_tech</span>
+          Top Contributors
+        </h3>
+        <div class="space-y-4">
+          @for (contributor of contributors; track contributor.name) {
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="relative">
+                  <img
+                    [alt]="contributor.name"
+                    class="w-9 h-9 rounded-full object-cover"
+                    [src]="contributor.avatar"
+                  />
+                  <span
+                    [class]="
+                      'absolute -top-1 -right-1 text-[8px] font-bold text-white px-1 rounded-full ' +
+                      contributor.badgeColor
+                    "
+                    >{{ contributor.rank }}</span
+                  >
+                </div>
+                <div>
+                  <p class="text-sm font-bold">{{ contributor.name }}</p>
+                  <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">
+                    {{ contributor.title }}
+                  </p>
+                </div>
+              </div>
+              <span class="text-xs font-bold text-[#1392ec]">{{ contributor.pts }} pts</span>
+            </div>
+          }
+        </div>
+      </section>
+
+      <!-- Safety Guidelines Banner -->
+      <div class="bg-linear-to-br from-[#1392ec] to-blue-600 rounded-xl p-6 text-white">
+        <span class="material-icons text-4xl mb-2 opacity-80">verified_user</span>
+        <h3 class="text-xl font-bold mb-2">Safe Solo Travel</h3>
+        <p class="text-sm text-white/80 mb-4 font-medium leading-relaxed">
+          We prioritize your safety. Read our community-vetted safety guides for solo travelers.
+        </p>
+        <button
+          class="w-full py-2 bg-white text-[#1392ec] text-sm font-bold rounded-lg hover:bg-slate-100 transition-all"
+        >
+          Read Guides
+        </button>
+      </div>
+    </aside>
+  </div>
+</main>

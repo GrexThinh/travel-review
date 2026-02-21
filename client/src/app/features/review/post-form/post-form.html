@@ -75,7 +75,7 @@
     <form [formGroup]="form" class="w-full max-w-4xl flex flex-col gap-8">
       <!-- Hero Image Upload (with preview when selected) -->
       <div
-        class="group relative flex min-h-[320px] w-full flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 overflow-hidden transition-colors hover:border-primary/50 hover:bg-primary/5"
+        class="group relative flex min-h-80 w-full flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 overflow-hidden transition-colors hover:border-primary/50 hover:bg-primary/5"
       >
         @if (coverPhotoPreviewUrl) {
           <img
@@ -315,13 +315,13 @@
                 pInputText
                 formControlName="key"
                 placeholder="Field name"
-                class="flex-1 min-w-[120px]"
+                class="flex-1 min-w-30"
               />
               <input
                 pInputText
                 formControlName="value"
                 placeholder="Value"
-                class="flex-1 min-w-[120px]"
+                class="flex-1 min-w-30"
               />
               <p-button
                 icon="pi pi-trash"
@@ -342,7 +342,7 @@
         <p class="text-sm text-slate-500 mb-4">Add more images to your review (optional).</p>
         <div class="flex flex-col gap-4">
           <label
-            class="flex min-h-[120px] w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 py-6 transition-colors hover:border-primary/50 hover:bg-primary/5"
+            class="flex min-h-30 w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 py-6 transition-colors hover:border-primary/50 hover:bg-primary/5"
           >
             <input
               type="file"

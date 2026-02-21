@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
-import { Home } from './home/home';
 
 export const routes: Routes = [
-  { path: '', component: Home },
+  {
+    path: '',
+    loadChildren: () => import('./features/review/routes').then((r) => r.reviewRoutes),
+  },
   {
     path: 'account',
     loadChildren: () => import('./features/account/routes').then((r) => r.accountRoutes),
@@ -10,6 +12,10 @@ export const routes: Routes = [
   {
     path: 'review',
     loadChildren: () => import('./features/review/routes').then((r) => r.reviewRoutes),
+  },
+  {
+    path: 'community',
+    loadChildren: () => import('./features/community/routes').then((r) => r.communityRoutes),
   },
   //   {
   //     path: '',
@@ -61,5 +67,5 @@ export const routes: Routes = [
   //   { path: 'errors', component: TestErrorsComponent },
   //   { path: 'not-found', component: NotFoundComponent },
   //   { path: 'server-error', component: ServerErrorComponent },
-  { path: '**', component: Home, pathMatch: 'full' },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
