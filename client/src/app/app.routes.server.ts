@@ -8,6 +8,14 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Server,
   },
   {
+    path: 'review/feed/detail/:id',
+    renderMode: RenderMode.Server,
+  },
+   {
+    path: 'review/edit/:id',
+    renderMode: RenderMode.Server,
+  },
+  {
     // Editable review pages include params — render on server to avoid SSG params
     path: 'edit/:id',
     renderMode: RenderMode.Server,
