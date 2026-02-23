@@ -28,7 +28,7 @@ public class ReviewController(
     }
 
     [HttpGet]
-    public async Task<ActionResult<ReviewPostDto>> GetAll(Guid id, CancellationToken cancellationToken)
+    public async Task<ActionResult<ReviewPostDto>> GetAll(CancellationToken cancellationToken)
     {
         var posts = await context.ReviewPosts
             .Include(p => p.Photos)
@@ -43,7 +43,6 @@ public class ReviewController(
         return Ok(posts);
     }
 
-    [Authorize]
     [HttpGet("{id:guid}")]
     public async Task<ActionResult<ReviewPostDto>> GetById(Guid id, CancellationToken cancellationToken)
     {

@@ -20,6 +20,7 @@
     >
       <div class="relative">
         <div
+          [routerLink]="['feed/detail', post.id]"
           class="w-full bg-cover bg-center"
           [ngClass]="getHeightByIndex(i)"
           [style.background-image]="'url(' + (post?.photos?.[0]?.url || defaultImage) + ')'"

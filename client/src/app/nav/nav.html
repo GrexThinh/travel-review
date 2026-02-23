@@ -3,9 +3,7 @@
 >
   <div class="flex items-center gap-8">
     <div routerLink="/" class="flex items-center gap-3 text-slate-900 cursor-pointer">
-      <div class="size-8 flex items-center justify-center text-primary">
-        <span class="material-symbols-outlined text-3xl">travel_explore</span>
-      </div>
+      <img src="logo/logo.png" alt="logo" class="size-12" />
       <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">TravelScore</h2>
     </div>
     <div class="hidden lg:flex items-center gap-4">
@@ -62,6 +60,13 @@
         />
       </div>
     </label>
+    <!-- Mobile menu button -->
+    <button
+      class="lg:hidden p-2 rounded-md text-slate-700 hover:bg-slate-100"
+      (click)="toggleMenu()"
+    >
+      <span class="material-symbols-outlined text-2xl">menu</span>
+    </button>
     @if (accountService.currentUser()) {
       <div class="flex items-center gap-2 shrink-0">
         <button class="relative p-2 text-slate-500 hover:bg-slate-100 rounded-full">
@@ -89,3 +94,87 @@
     }
   </div>
 </header>
+
+<!-- Mobile off-canvas menu -->
+<div *ngIf="menuOpen()" class="fixed inset-0 z-50">
+  <div class="absolute inset-0 bg-black/30" (click)="closeMenu()"></div>
+  <aside class="absolute right-0 top-0 h-full w-72 bg-white shadow-xl p-4 overflow-y-auto">
+    <div class="flex items-center justify-between mb-4">
+      <div class="flex items-center gap-3 cursor-pointer" routerLink="/" (click)="closeMenu()">
+        <span class="material-symbols-outlined text-3xl text-primary">travel_explore</span>
+        <h2 class="text-lg font-bold">TravelScore</h2>
+      </div>
+      <button class="p-2 rounded-md text-slate-600 hover:bg-slate-100" (click)="closeMenu()">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <nav class="flex flex-col gap-2">
+      <a
+        routerLink="review/destinations"
+        (click)="closeMenu()"
+        class="px-3 py-2 rounded-md text-slate-800 hover:bg-slate-50"
+        >Destinations</a
+      >
+      <a
+        routerLink="review/foods"
+        (click)="closeMenu()"
+        class="px-3 py-2 rounded-md text-slate-800 hover:bg-slate-50"
+        >Food</a
+      >
+      <a
+        routerLink="review/hotels"
+        (click)="closeMenu()"
+        class="px-3 py-2 rounded-md text-slate-800 hover:bg-slate-50"
+        >Hotels</a
+      >
+      <a
+        routerLink="review/flights"
+        (click)="closeMenu()"
+        class="px-3 py-2 rounded-md text-slate-800 hover:bg-slate-50"
+        >Flights</a
+      >
+      <a
+        routerLink="community"
+        (click)="closeMenu()"
+        class="px-3 py-2 rounded-md text-slate-800 hover:bg-slate-50"
+        >Community</a
+      >
+    </nav>
+    <div class="mt-6 border-t pt-4">
+      <ng-container *ngIf="accountService.currentUser(); else loggedOut">
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-full bg-cover"
+            [style.background-image]="
+              'url(' + (accountService.currentUser()?.photoUrl || defaultAvatar) + ')'
+            "
+            (click)="closeMenu()"
+          ></div>
+          <div class="flex flex-col">
+            <span class="font-bold">{{ accountService.currentUser()?.userName }}</span>
+            <a routerLink="/account/profile" (click)="closeMenu()" class="text-sm text-slate-500"
+              >View profile</a
+            >
+          </div>
+        </div>
+        <div class="mt-4">
+          <button
+            class="w-full bg-primary text-white px-3 py-2 rounded-md"
+            (click)="logoutAndClose()"
+          >
+            Logout
+          </button>
+        </div>
+      </ng-container>
+      <ng-template #loggedOut>
+        <button
+          class="w-full bg-primary text-white px-3 py-2 rounded-md"
+          routerLink="/account/login"
+          (click)="closeMenu()"
+        >
+          Login
+        </button>
+      </ng-template>
+    </div>
+  </aside>
+</div>

@@ -13,9 +13,15 @@ import { MenuItem } from 'primeng/api';
 })
 export class Nav {
   accountService = inject(AccountService);
+  menuOpen = signal(false);
   items: MenuItem[] | undefined;
   currentView = signal('explore');
   private router = inject(Router);
+
+  constructor() {
+    // close mobile menu when navigation happens
+    this.router.events.subscribe(() => this.menuOpen.set(false));
+  }
 
   defaultAvatar =
     'https://lh3.googleusercontent.com/aida-public/AB6AXuCCBTpVRD6FqSFWg_ZLzFGIph1-3ekobAp9MOf138jEEfpTZkMK1xeEnzvlJZqyoif-nvXpeKnUACTfkn7Tiruc3qNeavQIxxBFQDlaW-laRuUf_YaeU30kQCaPAPHfpwcMRTLk7R80wNJyozuk5-340qoInCSRK5KJ5h_ew25p6noXNXf8-wLvuLMHyQsBppK2XxkIy_s0KGtohpJO2Af1ruTTjcpMxNm3-G22WkZ8HBPPOA7byEchvPjKBUvNwFr5bULoA1iobTzn';
@@ -77,5 +83,16 @@ export class Nav {
 
     // toggle the PrimeNG menu when user is signed in
     menu?.toggle?.(event);
+  }
+  toggleMenu() {
+    this.menuOpen.set(!this.menuOpen());
+  }
+  closeMenu() {
+    this.menuOpen.set(false);
+  }
+  logoutAndClose() {
+    this.accountService.logout();
+    this.closeMenu();
+    this.router.navigate(['/']);
   }
 }
