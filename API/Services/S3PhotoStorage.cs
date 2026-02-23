@@ -39,7 +39,6 @@ public class S3PhotoStorage : IPhotoStorage
             Key = key,
             InputStream = stream,
             ContentType = file.ContentType,
-            CannedACL = _options.PublicRead ? S3CannedACL.PublicRead : null,
         };
         await _s3.PutObjectAsync(request, cancellationToken);
 

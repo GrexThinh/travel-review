@@ -9,7 +9,10 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", policy =>
     {
-        policy.WithOrigins("http://localhost:4200")
+        policy.WithOrigins(
+                "http://localhost:4200",
+                "https://travel-score.vercel.app"
+              )
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials();
@@ -22,9 +25,10 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 app.UseDeveloperExceptionPage();
-
 app.UseSwagger();
 app.UseSwaggerUI();
+
+app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 
