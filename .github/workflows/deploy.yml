@@ -31,7 +31,17 @@ jobs:
           script: |
             powershell "Stop-WebSite -Name 'Default Web Site'"
 
-      - name: Copy files
+      - name: Clean wwwroot
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: Administrator
+          key: ${{ secrets.EC2_KEY }}
+          port: 22
+          script: |
+            powershell "Remove-Item -Recurse -Force C:\inetpub\wwwroot\*"
+
+      - name: Copy publish files
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.EC2_HOST }}
@@ -45,7 +55,8 @@ jobs:
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USERNAME }}
-          password: ${{ secrets.EC2_PASSWORD }}
+          username: Administrator
+          key: ${{ secrets.EC2_KEY }}
+          port: 22
           script: |
             powershell "Start-WebSite -Name 'Default Web Site'"
