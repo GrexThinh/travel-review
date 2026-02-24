@@ -35,10 +35,11 @@ jobs:
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USERNAME }}
-          password: ${{ secrets.EC2_PASSWORD }}
+          username: Administrator
+          key: ${{ secrets.EC2_KEY }}
+          port: 22
           source: "publish/*"
-          target: "C:/inetpub/wwwroot/travel-api"
+          target: "C:/inetpub/wwwroot"
 
       - name: Start IIS
         uses: appleboy/ssh-action@v1.0.3
