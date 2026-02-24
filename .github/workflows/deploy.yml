@@ -25,8 +25,9 @@ jobs:
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USERNAME }}
-          password: ${{ secrets.EC2_PASSWORD }}
+          username: Administrator
+          key: ${{ secrets.EC2_KEY }}
+          port: 22
           script: |
             powershell "Stop-WebSite -Name 'Default Web Site'"
 
