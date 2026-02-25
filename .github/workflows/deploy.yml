@@ -1,62 +1,62 @@
-name: Deploy API to Windows EC2
+# name: Deploy API to Windows EC2
 
-on:
-  push:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
 
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+# jobs:
+#   build-and-deploy:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v4
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: "9.0.311"
+#       - name: Setup .NET
+#         uses: actions/setup-dotnet@v4
+#         with:
+#           dotnet-version: "9.0.311"
 
-      - name: Publish API
-        run: dotnet publish API/API.csproj -c Release -o publish
+#       - name: Publish API
+#         run: dotnet publish API/API.csproj -c Release -o publish
 
-      - name: Stop IIS
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: Administrator
-          key: ${{ secrets.EC2_KEY }}
-          port: 22
-          script: |
-            powershell "Stop-WebSite -Name 'Default Web Site'"
+#       - name: Stop IIS
+#         uses: appleboy/ssh-action@v1.0.3
+#         with:
+#           host: ${{ secrets.EC2_HOST }}
+#           username: Administrator
+#           key: ${{ secrets.EC2_KEY }}
+#           port: 22
+#           script: |
+#             powershell "Stop-WebSite -Name 'Default Web Site'"
 
-      - name: Clean wwwroot
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: Administrator
-          key: ${{ secrets.EC2_KEY }}
-          port: 22
-          script: |
-            powershell "Remove-Item -Recurse -Force C:\inetpub\wwwroot\*"
+#       - name: Clean wwwroot
+#         uses: appleboy/ssh-action@v1.0.3
+#         with:
+#           host: ${{ secrets.EC2_HOST }}
+#           username: Administrator
+#           key: ${{ secrets.EC2_KEY }}
+#           port: 22
+#           script: |
+#             powershell "Remove-Item -Recurse -Force C:\inetpub\wwwroot\*"
 
-      - name: Copy publish files
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: Administrator
-          key: ${{ secrets.EC2_KEY }}
-          port: 22
-          source: "publish/*"
-          target: "C:/inetpub/wwwroot"
+#       - name: Copy publish files
+#         uses: appleboy/scp-action@v0.1.7
+#         with:
+#           host: ${{ secrets.EC2_HOST }}
+#           username: Administrator
+#           key: ${{ secrets.EC2_KEY }}
+#           port: 22
+#           source: "publish/*"
+#           target: "C:/inetpub/wwwroot"
 
-      - name: Start IIS
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: Administrator
-          key: ${{ secrets.EC2_KEY }}
-          port: 22
-          script: |
-            powershell "Start-WebSite -Name 'Default Web Site'"
+#       - name: Start IIS
+#         uses: appleboy/ssh-action@v1.0.3
+#         with:
+#           host: ${{ secrets.EC2_HOST }}
+#           username: Administrator
+#           key: ${{ secrets.EC2_KEY }}
+#           port: 22
+#           script: |
+#             powershell "Start-WebSite -Name 'Default Web Site'"
