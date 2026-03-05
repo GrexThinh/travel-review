@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://54.251.151.98:5001/api/',
-  hubUrl: 'https://54.251.151.98:5001/hub/notifications',
+  apiUrl: 'http://thinhgrex-001-site1.ntempurl.com/api/',
+  hubUrl: 'http://thinhgrex-001-site1.ntempurl.com/hub/notifications',
 };
